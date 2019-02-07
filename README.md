@@ -1,3 +1,3 @@
 # Game
 Classic simple game collection
-Guess Number Game
+\nGuess Number Game
