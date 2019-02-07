@@ -1,5 +1,5 @@
-#ifndef GAME_GUESS_NUMBER_H
-#define GAME_GUESS_NUMBER_H
+#ifndef GUESS_NUMBER_H
+#define GUESS_NUMBER_H
 
 #include<iostream>
 #include<ctime>
