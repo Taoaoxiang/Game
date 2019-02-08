@@ -8,4 +8,6 @@ __pycache__/
 
 # vim swap
 *.swp
-/.vs/Game/v15/Browse.VC.opendb
+v15/
+.vs/
+*.ipch
