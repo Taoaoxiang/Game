@@ -2,8 +2,6 @@
 
 using namespace std;
 
-extern "C"
-{
 
 // Generate random number between 0 - 10^n
 long numberGen(int *arr, int n)
@@ -61,7 +59,7 @@ void getUserInput(int *A, int digit)
     }   
 }
 
-void gameGuessNumber()
+extern "C" void gameGuessNumber()
 {
     int digit = 4;
     int chance = 8; 
@@ -90,6 +88,4 @@ void gameGuessNumber()
 
     }
     cout << "==End==" << endl;
-}
-
 }
