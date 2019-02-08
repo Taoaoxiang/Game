@@ -61,8 +61,8 @@ void getUserInput(int *A, int digit)
 
 extern "C" void gameGuessNumber()
 {
-    int digit = 4;
-    int chance = 8; 
+    const int digit = 4;
+    const int chance = 8; 
     int answerArr[digit], userIn[digit];
     
     long answer = numberGen(answerArr, digit);
