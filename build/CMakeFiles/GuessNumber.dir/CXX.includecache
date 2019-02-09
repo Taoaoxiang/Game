@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/GuessNumber.h
+iostream
+-
+ctime
+-
+cmath
+-
+
+/garlic/user/atao/Desktop/test_folder/C_test/Test/Game/GuessNumber/main.cpp
+GuessNumber.h
+/garlic/user/atao/Desktop/test_folder/C_test/Test/Game/GuessNumber/GuessNumber.h
+

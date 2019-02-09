@@ -1,0 +1,2 @@
+/garlic/user/atao/Desktop/test_folder/C_test/Test/Game/build/CMakeFiles/GuessNumber.dir
+/garlic/user/atao/Desktop/test_folder/C_test/Test/Game/build/CMakeFiles/game.dir

@@ -1,0 +1,1 @@
+/usr/bin/c++   -O3 -DNDEBUG   CMakeFiles/GuessNumber.dir/main.cpp.o CMakeFiles/GuessNumber.dir/GuessNumber.cpp.o  -o ../bin/GuessNumber -rdynamic 

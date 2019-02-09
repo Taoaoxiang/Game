@@ -1,0 +1,1 @@
+/usr/bin/c++   -m64 -W -Wall -O3 -std=c++11 -O3 -DNDEBUG   CMakeFiles/GuessNumber.dir/GuessNumber/main.cpp.o  -o ../bin/GuessNumber -rdynamic ../lib/libgame.so -Wl,-rpath,/garlic/user/atao/Desktop/test_folder/C_test/Test/Game/lib 

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+
+if [ ! -d "./build" ]
+then 
+    mkdir build
+fi
+
+if [ ! -d "./lib" ] 
+then
+    mkdir build
+fi
+cd build/
+
+cmake -G "Unix Makefiles" \
+      -D CMAKE_CXX_FLAGS="-m64 -W -Wall -O3 -std=c++11" \
+      ..
+
+make install
+
+cd ..

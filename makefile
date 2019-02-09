@@ -1,4 +1,4 @@
-SOURCE_FILES='Guess_Number/GuessNumber.cpp'
+SOURCE_FILES='src/GuessNumber.cpp'
 OUTBIN='lib/libgame.so'
 
 ALL:
