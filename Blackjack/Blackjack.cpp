@@ -5,16 +5,17 @@ using namespace std;
 
 class DECK 
 {
-  public:
-    int open(int n) { return n*52; };
+public:
+	int open(int n) { return n*52; };
     void shuffle() {}
     int draw(){ return 1; }
-  private:
+private:
 }
 
 
 int main()
 {
+
 /*    while (true){
     }
 */
