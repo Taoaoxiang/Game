@@ -13,13 +13,27 @@ const array<char, 4> SUITS = {'c', 'd', 'h', 's'};
 
 
 
+
+std::vector<CARD> getDeck(int n)
+{
+	std::vector<CARD> vecCard;
+	for (int i = 0; i < n; ++i) {
+		for (const char &suit : SUITS) {
+			for (const unsigned &value : VALUES) {
+				CARD card(value, suit);
+				vecCard.push_back(card);
+			}
+		}
+	}
+	return vecCard;
+}
 /*
 class DECK 
 {
 public:
-    vector<CARD> open (int n) {return new CARD;}
-	int open(int n) { return n*52; }
-    void shuffle() {}
+	DECK(int);
+	void open(int);
+	void shuffle();
     int draw(){ return 1; }
 private:
     
@@ -39,6 +53,10 @@ int main()
     dealer1.welcome();
     dealer1.welcome("millionaire");
     CARD card1(7, 's');
+	std::vector<CARD> deck = getDeck(1);
+	for (std::vector <CARD> ::iterator id = deck.begin(); id != deck.end(); ++id) {
+		cout << id->front() <<endl;
+	}
     cout << card1.front() << endl;
 /*    while (true){
     }
