@@ -3,21 +3,24 @@
 
 #include "card.h"
 #include <string>
+#include <vector>
+#include <algorithm>
 
-
-
-class CARD
+std::vector<CARD> getDeck(int);
+class DECK
 {
 public:
-	std::string back();
-	std::string front();
-	unsigned get_value();
-	CARD(unsigned, char);
+	DECK(int);
+	void open(int);
+	void shuffle();
+	int draw() { return 1; }
+	void tep();
 private:
-	unsigned value;
-	char suit;
-protected:
-	std::string get_string();
+	std::vector<CARD> deck;
+
 };
+
+
+
 
 #endif // !DECK_H
