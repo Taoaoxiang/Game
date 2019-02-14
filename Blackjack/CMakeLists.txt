@@ -8,6 +8,6 @@ project(Blackjack)
 
 
 # Add source to this project's executable.
-add_executable (Blackjack "Blackjack.cpp" )
+add_executable (Blackjack "Blackjack.cpp" "card.cpp")
 
 # TODO: Add tests and install targets if needed.
