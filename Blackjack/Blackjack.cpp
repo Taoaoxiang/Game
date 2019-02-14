@@ -30,9 +30,7 @@ class PLAYER
 public:
 	//void stand();
 	//void hit();
-	PLAYER();
-	PLAYER(std::string playerName = "Player");
-	PLAYER(std::string playerName = "Player", long playerMoney = 100000);
+	PLAYER(std::string playerName = "Player", long playerMoney = 0);
 	void defName(std::string playerName = "Player");
 	void defMoney(long playerMoney = 100000);
     std::string getName();
@@ -41,18 +39,6 @@ private:
 	long playerMoney;
 	std::string playerName;
 };
-
-PLAYER::PLAYER()
-{
-	playerName = "Player";
-	playerMoney = 100000;
-    cout << playerMoney<< endl;
-}
-
-PLAYER::PLAYER(std::string pN)
-{
-	playerName = pN;
-}
 
 PLAYER::PLAYER(std::string pN, long pM) 
 {
@@ -86,9 +72,15 @@ int main()
     dealer1.welcome("millionaire");
     CARD card1(7, 's');
 	DECK deck1(1) ;
-	PLAYER pa();
-    //long pm = pa.getMoney();
-    //cout << pm << endl;
+	PLAYER pa;
+    long pm = pa.getMoney();
+    string pn = pa.getName();
+    cout << pn << ": " << pm << endl;
+    pa.defMoney(200000);
+    pa.defName("Harry Porter");
+    pn = pa.getName();
+    pm = pa.getMoney();
+    cout << pn << ": " << pm << endl;
 	
 	//cout << card1.front() << endl;
 /*    while (true){
