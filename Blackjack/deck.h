@@ -8,7 +8,6 @@
 #include <algorithm>
 #include <array>
 
-
 const std::array<unsigned, 13> VALUES = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
 const std::array<char, 4> SUITS = {'c', 'd', 'h', 's'};
 
@@ -20,8 +19,10 @@ public:
 	DECK(int n);
 	void open(int n);
 	void shuffle();
-	int draw() { return 1; }
+	CARD draw();
 	void tep();
+	std::vector<CARD> getCurrentDeck();
+	CARD getLastCard();
 private:
 	std::vector<CARD> deck;
 

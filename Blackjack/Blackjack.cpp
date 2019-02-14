@@ -44,8 +44,13 @@ int main()
     CARD card1(7, 's');
 	DECK deck1(1) ;
 	deck1.tep();
-	
-    //cout << card1.front() << endl;
+	deck1.shuffle();
+	cout << "-------------------" << endl;
+	deck1.tep();
+	cout << "Last: " << deck1.getLastCard().front << endl;
+	deck1.draw();
+	cout << "Last: " << deck1.getLastCard().front << endl;
+	//cout << card1.front() << endl;
 /*    while (true){
     }
 */

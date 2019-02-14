@@ -1,9 +1,5 @@
 #include "deck.h"
 
-//const array<unsigned, 13> VALUES = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
-//const array<char, 4> SUITS = {'c', 'd', 'h', 's'};
-
-
 std::vector<CARD> getDeck(int n)
 {
 	std::vector<CARD> vecCard;
@@ -33,6 +29,13 @@ void DECK::shuffle()
 	std::random_shuffle(deck.begin(), deck.end());
 }
 
+CARD DECK::draw()
+{
+	CARD card = deck.back();
+	deck.pop_back();
+	return card;
+}
+
 void DECK::tep()
 {
 	for (std::vector <CARD> ::iterator id = deck.begin(); id != deck.end(); ++id) {
@@ -40,3 +43,13 @@ void DECK::tep()
 	}
 }
 
+std::vector<CARD> DECK::getCurrentDeck()
+{
+	return deck;
+}
+
+CARD DECK::getLastCard()
+{
+	CARD card = deck.back();
+	return card;
+}
