@@ -36,7 +36,7 @@ CARD DECK::draw()
 	return card;
 }
 
-void DECK::tep()
+void DECK::printCurrentDeck()
 {
 	for (std::vector <CARD> ::iterator id = deck.begin(); id != deck.end(); ++id) {
 		std::cout << id->front() << std::endl;
@@ -47,7 +47,7 @@ std::vector<CARD> DECK::getCurrentDeck()
 {
 	return deck;
 }
-
+ 
 CARD DECK::getLastCard()
 {
 	CARD card = deck.back();

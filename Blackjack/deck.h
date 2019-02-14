@@ -20,15 +20,11 @@ public:
 	void open(int n);
 	void shuffle();
 	CARD draw();
-	void tep();
+	void printCurrentDeck();
 	std::vector<CARD> getCurrentDeck();
 	CARD getLastCard();
 private:
 	std::vector<CARD> deck;
-
 };
-
-
-
 
 #endif // !DECK_H
