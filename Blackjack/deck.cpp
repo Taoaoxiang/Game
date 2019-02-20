@@ -21,42 +21,51 @@ DECK::DECK()
 DECK::DECK(int n)
 {
 	amountDeck = n;
-	deck = getDeck(n);
+	this_deck = getDeck(n);
+	deck = &this_deck;
 }
 
 void DECK::open(int n)
 {
 	amountDeck = n;
-	deck = getDeck(n);
+	this_deck = getDeck(n);
+	deck = &this_deck;
 }
 
 void DECK::shuffle()
 {
-	std::random_shuffle(deck.begin(), deck.end());
+	if (deck == NULL) {
+		this_deck = getDeck(amountDeck);
+		deck = &this_deck;
+	}
+	std::random_shuffle(deck->begin(), deck->end());
 }
 
 CARD DECK::draw()
 {
-	CARD card = deck.back();
-	deck.pop_back();
+	CARD card = deck->back();
+	deck->pop_back();
 	return card;
 }
 
 void DECK::printCurrentDeck()
 {
-	for (std::vector <CARD> ::iterator id = deck.begin(); id != deck.end(); ++id) {
-		std::cout << id->front() << std::endl;
+	std::ostringstream message;
+	message << "SYSTEM: ";
+	for (std::vector <CARD> ::iterator id = deck->begin(); id != deck->end(); ++id) {
+		message << id->front() << "    ";
 	}
+	std::cout << message.str() << std::endl;
 }
 
 std::vector<CARD> DECK::getCurrentDeck()
 {
-	return deck;
+	return this_deck;
 }
  
 CARD DECK::getLastCard()
 {
-	CARD card = deck.back();
+	CARD card = deck->back();
 	return card;
 }
 
