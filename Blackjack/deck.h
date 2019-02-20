@@ -16,6 +16,7 @@ std::vector<CARD> getDeck(int);
 class DECK
 {
 public:
+	DECK();
 	DECK(int n);
 	void open(int n);
 	void shuffle();
@@ -23,8 +24,10 @@ public:
 	void printCurrentDeck();
 	std::vector<CARD> getCurrentDeck();
 	CARD getLastCard();
+	int getAmountDeck();
 private:
 	std::vector<CARD> deck;
+	int amountDeck;
 };
 
 #endif // !DECK_H

@@ -14,13 +14,19 @@ std::vector<CARD> getDeck(int n)
 	return vecCard;
 }
 
+DECK::DECK()
+{
+}
+
 DECK::DECK(int n)
 {
+	amountDeck = n;
 	deck = getDeck(n);
 }
 
 void DECK::open(int n)
 {
+	amountDeck = n;
 	deck = getDeck(n);
 }
 
@@ -52,4 +58,9 @@ CARD DECK::getLastCard()
 {
 	CARD card = deck.back();
 	return card;
+}
+
+int DECK::getAmountDeck()
+{
+	return amountDeck;
 }
