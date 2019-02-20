@@ -4,27 +4,17 @@
 #include <string>
 #include "card.h"
 #include "deck.h"
+#include "dealer.h"
 
 using namespace std;
 
 
 
-class DEALER
-{
-public:
-    void welcome() { cout << "Hello player!" << endl;}
-    void welcome(string player) { cout << "Hello " << player << "!" << endl;}
-	CARD draw(DECK);
-//private:
 
-};
 
-CARD DEALER::draw(DECK deck)
-{
-	CARD card = deck.draw();
-	return card;
-}
 
+
+/*
 class PLAYER
 {
 public:
@@ -65,6 +55,7 @@ long PLAYER::getMoney()
 {
     return playerMoney;
 }
+*/
 
 int main()
 {
@@ -72,20 +63,13 @@ int main()
     dealer1.welcome("millionaire");
     CARD card1(7, 's');
 	DECK deck1(1) ;
-	PLAYER pa;
-    long pm = pa.getMoney();
-    string pn = pa.getName();
-    cout << pn << ": " << pm << endl;
-    pa.defMoney(200000);
-    pa.defName("Harry Porter");
-    pn = pa.getName();
-    pm = pa.getMoney();
-    cout << pn << ": " << pm << endl;
+	dealer1.defDeck(deck1);
 	
 	//cout << card1.front() << endl;
 /*    while (true){
     }
 */
+	cout << "END of GAME!" << endl;
     return 0;
 }
 
