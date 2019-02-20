@@ -3,17 +3,18 @@
 
 DEALER::DEALER()
 {
-	std::cout << "Hello, I'm your dealer." << std::endl;
+	std::cout << "DEALER: Hello, I'm your dealer." << std::endl;
 }
 
 void DEALER::welcome(std::string player)
 {
-	std::cout << "Welcome, " << player << "!" << std::endl;
+	std::cout << "DEALER: Welcome, " << player << "!" << std::endl;
 }
 
 void DEALER::defDeck()
 {
 	deck = &this_deck;
+	deck->open(currentNumberDeck);
 }
 
 void DEALER::defDeck(DECK d)
@@ -21,6 +22,7 @@ void DEALER::defDeck(DECK d)
 	deck = &d;
 	currentNumberDeck = deck->getAmountDeck();
 	nextNumberDeck = currentNumberDeck;
+
 }
 
 void DEALER::setNumberDeck(int n)
@@ -53,12 +55,12 @@ void DEALER::shuffle()
 		currentNumberDeck = nextNumberDeck;
 		deckPlayed = false;
 	}
-	std::cout << "The deck of cards is shuffled." << std::endl;
+	std::cout << "DEALER: The deck of cards is shuffled." << std::endl;
 }
 
 CARD DEALER::draw()
 {
 	CARD card = deck->draw();
-	card.front();
+	std::cout << "DEALER [Draw]: " << card.front() << std::endl;
 	return card;
 }

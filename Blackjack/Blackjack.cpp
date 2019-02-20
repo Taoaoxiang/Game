@@ -6,7 +6,7 @@
 #include "deck.h"
 #include "dealer.h"
 
-using namespace std;
+
 
 
 
@@ -59,12 +59,15 @@ long PLAYER::getMoney()
 
 int main()
 {
+	using namespace std;
     DEALER dealer1;
     dealer1.welcome("millionaire");
     CARD card1(7, 's');
 	DECK deck1(1) ;
 	dealer1.defDeck(deck1);
-	
+	dealer1.shuffle();
+	dealer1.draw();
+	deck1.printCurrentDeck();
 	//cout << card1.front() << endl;
 /*    while (true){
     }

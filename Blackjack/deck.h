@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <sstream>
 #include <algorithm>
 #include <array>
 
@@ -18,7 +19,7 @@ class DECK
 public:
 	DECK();
 	DECK(int n);
-	void open(int n);
+	void open(int);
 	void shuffle();
 	CARD draw();
 	void printCurrentDeck();
@@ -26,8 +27,9 @@ public:
 	CARD getLastCard();
 	int getAmountDeck();
 private:
-	std::vector<CARD> deck;
-	int amountDeck;
+	std::vector<CARD> *deck = NULL;
+	std::vector<CARD> this_deck;
+	int amountDeck = 2;
 };
 
 #endif // !DECK_H
