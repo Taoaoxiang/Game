@@ -5,57 +5,31 @@
 #include "card.h"
 #include "deck.h"
 #include "dealer.h"
+#include "player.h"
 
-
-
-
-
-
-
-
-
-/*
-class PLAYER
+class TABLE
 {
 public:
-	//void stand();
-	//void hit();
-	PLAYER(std::string playerName = "Player", long playerMoney = 0);
-	void defName(std::string playerName = "Player");
-	void defMoney(long playerMoney = 100000);
-    std::string getName();
-    long getMoney();
+	TABLE();
+	void defNumber(unsigned);
+	void defDealer(DEALER);
+	//void defPlayer();
 private:
-	long playerMoney;
-	std::string playerName;
+	unsigned tableNumber;
+	DEALER *dealer;
+	//PLAYER 
+	// We have to serve many players at one table.
 };
 
-PLAYER::PLAYER(std::string pN, long pM) 
+void TABLE::defNumber(unsigned n)
 {
-	playerName = pN;
-	playerMoney = pM;
+	tableNumber = n;
 }
 
-void PLAYER::defName(std::string pN) 
+void TABLE::defDealer(DEALER d)
 {
-	playerName = pN;
+	dealer = &d;
 }
-
-void PLAYER::defMoney(long pM) 
-{ 
-	playerMoney = pM; 
-}
-
-std::string PLAYER::getName()
-{
-    return playerName;
-}
-
-long PLAYER::getMoney()
-{
-    return playerMoney;
-}
-*/
 
 int main()
 {
@@ -70,6 +44,13 @@ int main()
 	deck1.printCurrentDeck();
 	dealer1.draw();
 	dealer1.draw();
+
+	PLAYER player1("Millionaire", 1000000);
+
+	string name = player1.getName();
+	cout << name << endl;
+	cout << player1.getMoney() << endl;
+
 	//cout << card1.front() << endl;
 /*    while (true){
     }
