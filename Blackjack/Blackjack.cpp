@@ -68,6 +68,8 @@ int main()
 	dealer1.shuffle();
 	dealer1.draw();
 	deck1.printCurrentDeck();
+	dealer1.draw();
+	dealer1.draw();
 	//cout << card1.front() << endl;
 /*    while (true){
     }
