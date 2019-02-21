@@ -1,1 +1,1 @@
-g++ -std=c++11 Blackjack.cpp card.cpp deck.cpp dealer.cpp table.cpp -o Blackjack
+g++ -std=c++11 Blackjack.cpp card.cpp deck.cpp dealer.cpp table.cpp player.cpp -o Blackjack
