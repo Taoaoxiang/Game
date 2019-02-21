@@ -74,6 +74,7 @@ int main()
 /*    while (true){
     }
 */
+
 	cout << "END of GAME!" << endl;
     return 0;
 }
