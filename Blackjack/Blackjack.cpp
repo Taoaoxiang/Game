@@ -12,18 +12,21 @@
 int main()
 {
 	using namespace std;
-    DEALER dealer1;
+	// A player comes to table #9.
+	DEALER dealer1("Oliver");
 	PLAYER player1("Millionaire", 1000000);
 	TABLE table1;
 	table1.defAll(9, dealer1, player1);
     dealer1.welcome(player1.getName());
     
+	// Dealer gets two decks of cards.
+	// He then shuffles them.
 	DECK deck1(2);
 	dealer1.defDeck(deck1);
 	dealer1.shuffle();
 
 	dealer1.draw();
-	deck1.printCurrentDeck();
+	//deck1.printCurrentDeck();
 	dealer1.draw();
 
 

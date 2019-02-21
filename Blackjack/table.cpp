@@ -24,6 +24,11 @@ void TABLE::defAll(unsigned t, DEALER d, PLAYER p)
 	tableNumber = t;
 	dealer = &d;
 	player = &p;
+	std::ostringstream message;
+	message << "SYSTEM: Table -> " << tableNumber << '\n'
+		<< "        Dealer -> " << dealer->getName() << '\n'
+		<< "        Player -> " << player->getName();
+	std::cout << message.str() << std::endl;
 }
 
 unsigned TABLE::getTableNumber()

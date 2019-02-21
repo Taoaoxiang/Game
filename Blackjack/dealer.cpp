@@ -1,14 +1,28 @@
 #include "dealer.h"
-#include "dealer.h"
 
 DEALER::DEALER()
 {
-	std::cout << "DEALER: Hello, I'm your dealer." << std::endl;
+}
+
+DEALER::DEALER(std::string s)
+{
+	name = s;
 }
 
 void DEALER::welcome(std::string player)
 {
-	std::cout << "DEALER: Welcome, " << player << "!" << std::endl;
+	std::cout << "DEALER: Welcome, " << player << "!" << '\n'
+		<< "        " << "I'm " << name << "." << std::endl;
+}
+
+void DEALER::defName(std::string s)
+{
+	name = s;
+}
+
+std::string DEALER::getName()
+{
+	return name;
 }
 
 void DEALER::defDeck()

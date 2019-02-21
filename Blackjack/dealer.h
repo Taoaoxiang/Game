@@ -9,9 +9,12 @@
 
 class DEALER
 {
-public:
+public:	
 	DEALER();
+	DEALER(std::string);
 	void welcome(std::string);
+	void defName(std::string);
+	std::string getName();
 	void defDeck();
 	void defDeck(DECK);
 	void setNumberDeck(int);
@@ -21,6 +24,7 @@ public:
 private:
 	DECK *deck;
 	DECK this_deck;
+	std::string name;
 	int currentNumberDeck = 2;
 	int nextNumberDeck = 2;
 	bool deckPlayed = false;
