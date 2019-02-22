@@ -40,7 +40,7 @@ void DECK::shuffle()
 	}
 	std::srand(std::time(0));
 	unsigned int r = std::rand() % 19;
-	std::cout << "T: " << r << std::endl;
+	//Shuffle the cards random time(s)
 	for (int i = 0; i <= r; ++i) {
 		std::random_shuffle(deck->begin(), deck->end());
 	}
