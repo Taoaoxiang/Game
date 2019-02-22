@@ -39,7 +39,11 @@ void DECK::shuffle()
 		deck = &this_deck;
 	}
 	std::srand(std::time(0));
-	std::random_shuffle(deck->begin(), deck->end());
+	unsigned int r = std::rand() % 19;
+	std::cout << "T: " << r << std::endl;
+	for (int i = 0; i <= r; ++i) {
+		std::random_shuffle(deck->begin(), deck->end());
+	}
 }
 
 CARD DECK::draw()
