@@ -25,7 +25,8 @@ int main()
 	dealer1.defDeck(deck1);
 	dealer1.shuffle();
 
-	dealer1.draw();
+	player1.initCard(dealer1.draw());
+	player1.initCard(dealer1.draw());
 	//deck1.printCurrentDeck();
 	dealer1.draw();
 

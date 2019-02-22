@@ -75,6 +75,6 @@ void DEALER::shuffle()
 CARD DEALER::draw()
 {
 	CARD card = deck->draw();
-	std::cout << "DEALER [Draw]: " << card.front() << std::endl;
+	//std::cout << "DEALER [Draw]: " << card.front() << std::endl;
 	return card;
 }

@@ -16,10 +16,16 @@ public:
 	std::string getName();
 	long getMoney();
 	//void stand();
+	//void split();
 	void hit();
+	void initCard(CARD);
 private:
 	long playerMoney;
 	std::string playerName;
+	std::vector<CARD> *cards = NULL;
+	std::vector<CARD> my_cards;
+	unsigned points = 0;
+	unsigned numberCard = 0;
 };
 
 #endif // !PLAYER_H
