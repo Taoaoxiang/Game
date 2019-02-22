@@ -25,6 +25,35 @@ int main()
 	dealer1.defDeck(deck1);
 	dealer1.shuffle();
 
+	// 1. player deals
+
+	// 2. player and dealer initilize cards
+	//	2.1 player draw
+	//	2.2 dealer draw
+	//	2.3 player draw
+	//	2.4 dealer draw
+
+	// 3. player choose to (until stand or double)
+	//	(auto) Blackjack (==21, player turn ends)
+	//	A. stand (no change, player turn ends)
+	//	B. hit (one draw, next)
+	//	C. double (one draw, player turn ends)
+	//	(opt) split
+	//	(auto) Bust (>21, player turn ends)
+
+	// 4. dealer choose to ()
+	//	(auto) Blackjack (==21, dealer turn ends)
+	//	(auto) player bust (dealer turn ends)
+	//	(auto) dealer points > player points (dealer turn ends)
+	//	A. stand (>=17, dealer turn ends)
+	//	B. hit (<17, until >=17)
+	//	(auto) Bust (>21, dealer turn ends)
+
+	// 5. compare
+
+
+
+	// 
 	player1.initCard(dealer1.draw());
 	player1.initCard(dealer1.draw());
 	//deck1.printCurrentDeck();
