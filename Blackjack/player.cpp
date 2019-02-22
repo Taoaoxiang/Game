@@ -56,6 +56,8 @@ void PLAYER::initCard(CARD c)
 				v = 11;
 				points += v;
 			}
+		} else {
+			points += v;
 		}
 	}
 	std::string s = c.front();

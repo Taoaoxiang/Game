@@ -38,6 +38,7 @@ void DECK::shuffle()
 		this_deck = getDeck(amountDeck);
 		deck = &this_deck;
 	}
+	std::srand(std::time(0));
 	std::random_shuffle(deck->begin(), deck->end());
 }
 
