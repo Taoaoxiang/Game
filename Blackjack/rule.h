@@ -2,6 +2,7 @@
 #define RULE_H
 
 #include <iostream>
+#include <sstream>
 #include <vector>
 #include <string>
 #include "card.h"
@@ -19,6 +20,9 @@ public:
 	unsigned getPoints(std::vector<CARD>);
 	unsigned getPoints(DEALER);
 	unsigned getPoints(PLAYER);
+	void showInitCards(DEALER);
+	//void showCards(DEALER);
+	void showCards(PLAYER);
 	//long getDeal(PLAYER);
 //private:
 

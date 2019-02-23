@@ -14,7 +14,6 @@ int main()
 {
 	using namespace std;
 	// A player comes to table #9.
-	RULE rule1;
 	DEALER dealer1("Oliver");
 	PLAYER player1("Millionaire", 1000000);
 	TABLE table1;
@@ -28,9 +27,9 @@ int main()
 	dealer1.defDeck(deck1);
 	dealer1.shuffle();
 
-	// 1. player makes a bet
+	// 1. player makes a bet															 
 	player1.makeBet();
-
+	//cout << "\r" << endl;
 	// 2. player and dealer initilize cards
 	//	2.1 player draw
 	//	2.2 dealer draw
@@ -40,7 +39,9 @@ int main()
 	dealer1.initCard(dealer1.draw());
 	player1.initCard(dealer1.draw());
 	dealer1.initCard(dealer1.draw());
-
+	//	2.5 show cards
+	dealer1.showInitCards();
+	player1.showCards();
 
 	// 3. player choose to (until stand or double)
 	//	(auto) Blackjack (==21, player turn ends)

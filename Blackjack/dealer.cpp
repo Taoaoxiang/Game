@@ -86,8 +86,14 @@ void DEALER::initCard(CARD c)
 	cards->push_back(c);
 }
 
+void DEALER::showInitCards()
+{
+	RULE r;
+	r.showInitCards(*this);
+}
+
 unsigned DEALER::getPoints()
 {
 	RULE r;
-	return r.getPoints(*cards);
+	return r.getPoints(*this);
 }

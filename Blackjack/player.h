@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <iostream>
+#include <limits>
 #include <vector>
 #include <string>
 #include "card.h"
@@ -24,6 +25,7 @@ public:
 	void makeBet();
 	void hit();
 	void initCard(CARD);
+	void showCards();
 	unsigned getPoints();
 private:
 	long playerMoney;

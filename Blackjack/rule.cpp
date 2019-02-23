@@ -47,3 +47,26 @@ unsigned RULE::getPoints(PLAYER p)
 {
 	return getPoints(*p.cards);
 }
+
+void RULE::showInitCards(DEALER d)
+{
+	std::ostringstream msg;
+	msg << "SYSTEM: (Dealer)=> [ X ] " ;
+	std::string c1 = (*d.cards)[0].front();
+	std::string c2 = (*d.cards)[1].front();
+	msg << "[ " << c2 << " ] ";
+	std::cout << msg.str() << std::endl;
+}
+
+void RULE::showCards(PLAYER p)
+{
+	std::ostringstream msg;
+	std::string c;
+	msg << "SYSTEM: (Player)=> ";
+	for (std::vector <CARD> ::iterator i = p.cards->begin();
+		i != p.cards->end(); ++i) {
+		c = i->front();
+		msg << "[ " << c << " ] ";
+	}
+	std::cout << msg.str() << std::endl;
+}

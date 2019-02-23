@@ -25,6 +25,7 @@ public:
 	void shuffle();
 	CARD draw();
 	void initCard(CARD);
+	void showInitCards();
 	unsigned getPoints();
 private:
 	DECK *deck;
