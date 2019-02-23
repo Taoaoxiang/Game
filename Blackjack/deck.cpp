@@ -57,7 +57,8 @@ void DECK::printCurrentDeck()
 {
 	std::ostringstream message;
 	message << "SYSTEM: ";
-	for (std::vector <CARD> ::iterator id = deck->begin(); id != deck->end(); ++id) {
+	for (std::vector <CARD> ::iterator id = deck->begin(); 
+		id != deck->end(); ++id) {
 		message << id->front() << "    ";
 	}
 	std::cout << message.str() << std::endl;

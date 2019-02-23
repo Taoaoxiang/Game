@@ -6,9 +6,12 @@
 #include <string>
 #include "card.h"
 #include "deck.h"
+#include "rule.h"
+#include "table.h"
 
 class PLAYER
 {
+	friend class RULE;
 public:
 	PLAYER(std::string, long);
 	void defName(std::string);
@@ -19,13 +22,12 @@ public:
 	//void split();
 	void hit();
 	void initCard(CARD);
+	unsigned getPoints();
 private:
 	long playerMoney;
 	std::string playerName;
 	std::vector<CARD> *cards = NULL;
 	std::vector<CARD> my_cards;
-	unsigned points = 0;
-	unsigned numberCard = 0;
 };
 
 #endif // !PLAYER_H

@@ -12,6 +12,8 @@
 
 class TABLE
 {
+	friend class DEALER;
+	friend class PLAYER;
 public:
 	TABLE();
 	void defNumber(unsigned);

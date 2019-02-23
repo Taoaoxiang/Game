@@ -7,12 +7,14 @@
 #include "dealer.h"
 #include "player.h"
 #include "table.h"
+#include "rule.h"
 
 
 int main()
 {
 	using namespace std;
 	// A player comes to table #9.
+	RULE rule1;
 	DEALER dealer1("Oliver");
 	PLAYER player1("Millionaire", 1000000);
 	TABLE table1;
@@ -54,8 +56,18 @@ int main()
 
 
 	// 
+	
 	player1.initCard(dealer1.draw());
+	dealer1.initCard(dealer1.draw());
 	player1.initCard(dealer1.draw());
+	dealer1.initCard(dealer1.draw());
+	unsigned t;
+	//t = rule1.getPoints(dealer1);
+	//cout << "Td: " << t << endl;
+	//t = rule1.getPoints(player1);
+	//cout << "Tp: " << t << endl;
+	t = player1.getPoints();
+	cout << "Tp: " << t << endl;
 	//deck1.printCurrentDeck();
 	dealer1.draw();
 

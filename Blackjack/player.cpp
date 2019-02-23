@@ -35,33 +35,11 @@ void PLAYER::hit()
 void PLAYER::initCard(CARD c)
 {
 	cards->push_back(c);
-	++numberCard;
-	//std::string s1 = (*cards)[i].front() ;
-	//TODO: We have to introduce rule.h
-	unsigned v = c.get_value();
-	if (v > 10) {
-		v = 10;
-	}
+	//std::string s1 = (*cards)[i].front();
+}
 
-	if (numberCard == 1) {
-		if (v == 1) {
-			v = 11;
-		}
-		points += v;
-	} else if (numberCard == 2) {
-		if (v == 1) {
-			if (points == 11) {
-				points += v;
-			} else {
-				v = 11;
-				points += v;
-			}
-		} else {
-			points += v;
-		}
-	}
-	std::string s = c.front();
-	std::cout << "PLAYER: (Card) ->" << s << '\n'
-		<< "        Points: " << points << std::endl;
-
+unsigned PLAYER::getPoints()
+{
+	RULE r;
+	return r.getPoints(*cards);
 }

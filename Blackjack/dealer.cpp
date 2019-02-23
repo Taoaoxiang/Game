@@ -2,10 +2,12 @@
 
 DEALER::DEALER()
 {
+	cards = &my_cards;
 }
 
 DEALER::DEALER(std::string s)
 {
+	cards = &my_cards;
 	name = s;
 }
 
@@ -77,4 +79,15 @@ CARD DEALER::draw()
 	CARD card = deck->draw();
 	//std::cout << "DEALER [Draw]: " << card.front() << std::endl;
 	return card;
+}
+
+void DEALER::initCard(CARD c)
+{
+	cards->push_back(c);
+}
+
+unsigned DEALER::getPoints()
+{
+	RULE r;
+	return r.getPoints(*cards);
 }
