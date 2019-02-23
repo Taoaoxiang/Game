@@ -27,6 +27,15 @@ long PLAYER::getMoney()
 	return playerMoney;
 }
 
+void PLAYER::makeBet()
+{
+	std::cout << "SYSTEM: Please make a BET!\n"
+		<< "        " << "(1 ~ " << playerMoney << ")\n"
+		<< "        ";
+	std::cin >> deal;
+	playerMoney -= deal;
+}
+
 void PLAYER::hit()
 {
 	//

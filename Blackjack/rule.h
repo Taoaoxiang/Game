@@ -19,6 +19,7 @@ public:
 	unsigned getPoints(std::vector<CARD>);
 	unsigned getPoints(DEALER);
 	unsigned getPoints(PLAYER);
+	//long getDeal(PLAYER);
 //private:
 
 };

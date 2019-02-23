@@ -21,19 +21,26 @@ int main()
 	table1.defAll(9, dealer1, player1);
     dealer1.welcome(player1.getName());
     
+	cout << "\nSYSTEM: START" << endl;
 	// Dealer gets two decks of cards.
 	// He then shuffles them.
 	DECK deck1(2);
 	dealer1.defDeck(deck1);
 	dealer1.shuffle();
 
-	// 1. player deals
+	// 1. player makes a bet
+	player1.makeBet();
 
 	// 2. player and dealer initilize cards
 	//	2.1 player draw
 	//	2.2 dealer draw
 	//	2.3 player draw
-	//	2.4 dealer draw
+	//	2.4 dealer draw	
+	player1.initCard(dealer1.draw());
+	dealer1.initCard(dealer1.draw());
+	player1.initCard(dealer1.draw());
+	dealer1.initCard(dealer1.draw());
+
 
 	// 3. player choose to (until stand or double)
 	//	(auto) Blackjack (==21, player turn ends)
@@ -57,10 +64,7 @@ int main()
 
 	// 
 	
-	player1.initCard(dealer1.draw());
-	dealer1.initCard(dealer1.draw());
-	player1.initCard(dealer1.draw());
-	dealer1.initCard(dealer1.draw());
+
 	unsigned t;
 	//t = rule1.getPoints(dealer1);
 	//cout << "Td: " << t << endl;

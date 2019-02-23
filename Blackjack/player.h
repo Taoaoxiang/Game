@@ -20,6 +20,8 @@ public:
 	long getMoney();
 	//void stand();
 	//void split();
+	long deal = 0;
+	void makeBet();
 	void hit();
 	void initCard(CARD);
 	unsigned getPoints();
