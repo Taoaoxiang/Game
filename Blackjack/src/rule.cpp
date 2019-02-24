@@ -1,4 +1,4 @@
-#include "rule.h"
+#include "../include/rule.h"
 
 RULE::RULE()
 {

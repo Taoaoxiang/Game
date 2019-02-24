@@ -1,4 +1,4 @@
-#include "deck.h"
+#include "../include/deck.h"
 
 std::vector<CARD> getDeck(int n)
 {

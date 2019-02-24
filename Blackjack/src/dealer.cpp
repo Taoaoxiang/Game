@@ -1,4 +1,4 @@
-#include "dealer.h"
+#include "../include/dealer.h"
 
 DEALER::DEALER()
 {

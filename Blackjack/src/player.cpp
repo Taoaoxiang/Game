@@ -1,4 +1,4 @@
-#include "player.h"
+#include "../include/player.h"
 
 PLAYER::PLAYER(std::string pN = "Player", long pM = 0)
 {

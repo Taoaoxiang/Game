@@ -1,4 +1,4 @@
-#include "table.h"
+#include "../include/table.h"
 
 TABLE::TABLE()
 {
