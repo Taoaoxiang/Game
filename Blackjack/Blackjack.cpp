@@ -2,12 +2,12 @@
 #include <vector>
 #include <array>
 #include <string>
-#include "include/card.h"
-#include "include/deck.h"
-#include "include/dealer.h"
-#include "include/player.h"
-#include "include/table.h"
-#include "include/rule.h"
+#include "card.h"
+#include "deck.h"
+#include "dealer.h"
+#include "player.h"
+#include "table.h"
+#include "rule.h"
 
 
 int main()

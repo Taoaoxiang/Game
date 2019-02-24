@@ -20,6 +20,7 @@ class PLAYER
 	friend class RULE;
 public:
 	PLAYER(std::string, long);
+	~PLAYER();
 	void defName(std::string);
 	void defMoney(long);
 	std::string getName();

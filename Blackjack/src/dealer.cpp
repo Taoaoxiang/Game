@@ -1,4 +1,4 @@
-#include "../include/dealer.h"
+#include "dealer.h"
 
 DEALER::DEALER()
 {
@@ -9,6 +9,10 @@ DEALER::DEALER(std::string s)
 {
 	cards = &my_cards;
 	name = s;
+}
+
+DEALER::~DEALER()
+{
 }
 
 void DEALER::welcome(std::string player)

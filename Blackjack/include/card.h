@@ -10,6 +10,7 @@ public:
 	std::string front();
 	unsigned get_value();
 	CARD(unsigned, char);
+	~CARD();
 private:
 	unsigned value;
 	char suit;

@@ -1,10 +1,14 @@
-#include "../include/player.h"
+#include "player.h"
 
 PLAYER::PLAYER(std::string pN = "Player", long pM = 0)
 {
 	playerName = pN;
 	playerMoney = pM;
 	cards = &my_cards;
+}
+
+PLAYER::~PLAYER()
+{
 }
 
 void PLAYER::defName(std::string pN = "Player")

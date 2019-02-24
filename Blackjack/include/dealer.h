@@ -20,6 +20,7 @@ class DEALER
 public:	
 	DEALER();
 	DEALER(std::string);
+	~DEALER();
 	void welcome(std::string);
 	void defName(std::string);
 	std::string getName();

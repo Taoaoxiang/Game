@@ -1,4 +1,4 @@
-#include "../include/card.h"
+#include "card.h"
 
 std::string CARD::back()
 {
@@ -19,6 +19,10 @@ CARD::CARD(unsigned v, char c)
 {
 	value = v;
 	suit = c;
+}
+
+CARD::~CARD()
+{
 }
 
 std::string CARD::get_string()

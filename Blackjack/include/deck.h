@@ -22,6 +22,7 @@ class DECK
 public:
 	DECK();
 	DECK(int n);
+	~DECK();
 	void open(int);
 	void shuffle();
 	CARD draw();

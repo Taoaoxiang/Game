@@ -23,6 +23,7 @@ class RULE
 	friend class PLAYER;
 public:
 	RULE();
+	~RULE();
 	unsigned getPoints(std::vector<CARD>);
 	unsigned getPoints(DEALER);
 	unsigned getPoints(PLAYER);

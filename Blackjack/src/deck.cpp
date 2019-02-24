@@ -1,4 +1,4 @@
-#include "../include/deck.h"
+#include "deck.h"
 
 std::vector<CARD> getDeck(int n)
 {
@@ -23,6 +23,10 @@ DECK::DECK(int n)
 	amountDeck = n;
 	this_deck = getDeck(n);
 	deck = &this_deck;
+}
+
+DECK::~DECK()
+{
 }
 
 void DECK::open(int n)

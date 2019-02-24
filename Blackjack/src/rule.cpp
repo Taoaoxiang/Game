@@ -1,6 +1,10 @@
-#include "../include/rule.h"
+#include "rule.h"
 
 RULE::RULE()
+{
+}
+
+RULE::~RULE()
 {
 }
 

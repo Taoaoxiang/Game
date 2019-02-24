@@ -1,6 +1,10 @@
-#include "../include/table.h"
+#include "table.h"
 
 TABLE::TABLE()
+{
+}
+
+TABLE::~TABLE()
 {
 }
 
