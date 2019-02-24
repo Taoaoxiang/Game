@@ -28,5 +28,5 @@ add_executable (Blackjack "Blackjack.cpp" ${SOURCES})
 #target_link_libraries(GuessNumber ${CMAKE_SOURCE_DIR}/lib/*.so)
 
 
-target_link_libraries(Blackjack BlackjackLib)
+#target_link_libraries(Blackjack BlackjackLib)
 # TODO: Add tests and install targets if needed.
