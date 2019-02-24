@@ -11,7 +11,8 @@ SET(SOURCE_DIR ${Game_SOURCE_DIR}/Blackjack/src)
 
 # Include header files
 include_directories(${INCLUDE_DIR})
-add_library(BlackjackLib *.cpp)
+file(GLOB ALLCPP *.cpp)
+add_library(BlackjackLib ${ALLCPP})
 
 
 # TODO: Add tests and install targets if needed.
