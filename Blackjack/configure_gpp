@@ -1,1 +1,2 @@
+# Shit, doesnt work anymore
 g++ -std=c++11 Blackjack.cpp card.cpp deck.cpp dealer.cpp table.cpp player.cpp rule.cpp -o Blackjack
