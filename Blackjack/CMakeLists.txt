@@ -4,7 +4,7 @@
 cmake_minimum_required (VERSION 3.0.2)
 
 project(Blackjack)
-#SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w -std=c++11")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w -std=c++11")
 
 
 # Set bin, include, source folders
