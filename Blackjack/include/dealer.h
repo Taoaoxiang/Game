@@ -9,6 +9,11 @@
 #include <vector>
 #include <iostream>
 
+class CARD;
+class DECK;
+class RULE;
+class TABLE;
+
 class DEALER
 {
 	friend class RULE;

@@ -10,6 +10,11 @@
 #include "dealer.h"
 #include "player.h"
 
+class CARD;
+class DECK;
+class DEALER;
+class PLAYER;
+
 class TABLE
 {
 	friend class DEALER;

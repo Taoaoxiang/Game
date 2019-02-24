@@ -11,6 +11,12 @@
 #include "player.h"
 #include "table.h"
 
+class CARD;
+class DECK;
+class DEALER;
+class PLAYER;
+class TABLE;
+
 class RULE
 {
 	friend class DEALER;
