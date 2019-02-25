@@ -1,4 +1,4 @@
-#include "include/GuessNumber.h"
+#include "GuessNumber.h"
 
 using namespace std;
 

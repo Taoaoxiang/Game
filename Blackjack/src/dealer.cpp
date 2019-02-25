@@ -101,3 +101,9 @@ unsigned DEALER::getPoints()
 	RULE r;
 	return r.getPoints(*this);
 }
+
+unsigned DEALER::turn(unsigned pP)
+{
+	RULE r;
+	return r.dealerTurn(*this, pP);
+}

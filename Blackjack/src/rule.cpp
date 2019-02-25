@@ -73,6 +73,21 @@ void RULE::showCards(PLAYER p)
 		msg << "[ " << c << " ] ";
 	}
 	std::cout << msg.str() << std::endl;
+	std::cout << "        " << getPoints(*p.cards) << " points."<< std::endl;
+}
+
+void RULE::showCards(DEALER d)
+{
+	std::ostringstream msg;
+	std::string c;
+	msg << "SYSTEM: (Dealer)=> ";
+	for (std::vector <CARD> ::iterator i = d.cards->begin();
+		i != d.cards->end(); ++i) {
+		c = i->front();
+		msg << "[ " << c << " ] ";
+	}
+	std::cout << msg.str() << std::endl;
+	std::cout << "        " << getPoints(*d.cards) << " points." << std::endl;
 }
 
 unsigned RULE::playerTurn(PLAYER p, DEALER d)
@@ -133,5 +148,20 @@ unsigned RULE::playerTurn(PLAYER p, DEALER d)
 		}
 	}
 	std::cout << "        " << "Bust!" << std::endl;
+	return points;
+}
+
+unsigned RULE::dealerTurn(DEALER d, unsigned pPoint)
+{
+	std::cout << "SYSTEM: Dealer's turn." << std::endl;
+	showCards(d);
+	unsigned points = getPoints(d);
+	if (points == 21) {
+		std::cout << "        " << "Blackjack!" << std::endl;
+		return points;
+	} else if (pPoint >= 21) {
+		return points;
+	}
+	// TODO : while 
 	return points;
 }

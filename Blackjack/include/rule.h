@@ -28,9 +28,10 @@ public:
 	unsigned getPoints(DEALER);
 	unsigned getPoints(PLAYER);
 	void showInitCards(DEALER);
-	//void showCards(DEALER);
+	void showCards(DEALER);
 	void showCards(PLAYER);
 	unsigned playerTurn(PLAYER, DEALER);
+	unsigned dealerTurn(DEALER, unsigned);
 //private:
 
 };

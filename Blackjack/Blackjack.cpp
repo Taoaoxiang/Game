@@ -40,14 +40,15 @@ int main()
 	dealer1.showInitCards();
 	player1.showCards();
 
-	// 3. player choose to (until stand or double)
+	// 3. player's turn
 	//	(auto) Blackjack (==21, player turn ends)
 	//	A. stand (no change, player turn ends)
 	//	B. hit (one draw, next)
 	//	C. double (one draw, player turn ends)
 	//	(auto) Bust (>21, player turn ends)
-	//	(opt) split #TODO: this one we will consider later.
-	player1.turn(dealer1);
+	//	TODO: (opt) split #TODO: this one we will consider later.
+	unsigned playerPoints = 0;
+	playerPoints = player1.turn(dealer1);
 	
 
 	// 4. dealer choose to ()
@@ -57,6 +58,8 @@ int main()
 	//	A. stand (>=17, dealer turn ends)
 	//	B. hit (<17, until >=17)
 	//	(auto) Bust (>21, dealer turn ends)
+	unsigned dealerPoints = 0;
+	dealerPoints = dealer1.turn(playerPoints);
 
 	// 5. compare
 
@@ -66,12 +69,7 @@ int main()
 	
 
 	unsigned t;
-	//t = rule1.getPoints(dealer1);
-	//cout << "Td: " << t << endl;
-	//t = rule1.getPoints(player1);
-	//cout << "Tp: " << t << endl;
-	t = player1.getPoints();
-	cout << "Tp: " << t << endl;
+
 	//deck1.printCurrentDeck();
 	dealer1.draw();
 

@@ -35,6 +35,7 @@ public:
 	void initCard(CARD);
 	void showInitCards();
 	unsigned getPoints();
+	unsigned turn(unsigned);
 private:
 	DECK *deck;
 	DECK this_deck;
