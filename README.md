@@ -10,7 +10,7 @@ My version of Blackjack.<br />
 ### Compile
 
 ``` bash
-# I haven't tried yet, but it should work
+# Try this one in Linux
 mkdir build
 cd build
 cmake ..

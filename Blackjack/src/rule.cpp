@@ -103,7 +103,7 @@ unsigned RULE::playerTurn(PLAYER p, DEALER d)
 	}
 	std::string letter;
 	while ((points = getPoints(p)) < 21) {
-		if (p.deal <= p.playerMoney) {
+		if (p.deal <= p.playerMoney && p.cards->size() == 2) {
 			std::cout << msg.str() << '\n'
 				<< "        " << "Double: (D) or (d)\n" 
 				<< "        " << "Please choose, default stand: ";
@@ -131,8 +131,8 @@ unsigned RULE::playerTurn(PLAYER p, DEALER d)
 			}
 		} else {
 			std::cout << msg.str() << "\n"
-				<< "        " << "Please choose, default stand: "; 
-			std::getline(std::cin, letter);
+				<< "        " << "Please choose, default stand: ";
+			std::cin >> letter;
 			switch (letter[0]) {
 			case 'H': case 'h':
 				p.initCard(d.draw());
@@ -162,6 +162,11 @@ unsigned RULE::dealerTurn(DEALER d, unsigned pPoint)
 	} else if (pPoint >= 21) {
 		return points;
 	}
-	// TODO : while 
+	// TODO : 
+	/*
+	while (points < 17 ) {
+
+	}
+	*/
 	return points;
 }
