@@ -9,6 +9,6 @@ __pycache__/
 # vim swap
 *.swp
 **/.vs/
-**/build/
+**/build
 **/Blackjack/bin
 **/GuessNumber/bin

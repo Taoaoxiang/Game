@@ -1,1 +1,0 @@
-/usr/bin/c++  -fPIC -m64 -W -Wall -O3 -std=c++11 -O3 -DNDEBUG  -shared -Wl,-soname,libgame.so -o libgame.so CMakeFiles/game.dir/src/GuessNumber.cpp.o 

@@ -1,1 +1,0 @@
-/garlic/user/atao/Desktop/test_folder/C_test/Test/Game/lib/libgame.so
