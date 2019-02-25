@@ -31,15 +31,12 @@ int main()
 	player1.makeBet();
 	//cout << "\r" << endl;
 	// 2. player and dealer initilize cards
-	//	2.1 player draw
-	//	2.2 dealer draw
-	//	2.3 player draw
-	//	2.4 dealer draw	
+	//	2.1 draw: player -> dealer -> player -> dealer 
 	player1.initCard(dealer1.draw());
 	dealer1.initCard(dealer1.draw());
 	player1.initCard(dealer1.draw());
 	dealer1.initCard(dealer1.draw());
-	//	2.5 show cards
+	//	2.2 show cards
 	dealer1.showInitCards();
 	player1.showCards();
 
@@ -48,8 +45,10 @@ int main()
 	//	A. stand (no change, player turn ends)
 	//	B. hit (one draw, next)
 	//	C. double (one draw, player turn ends)
-	//	(opt) split
 	//	(auto) Bust (>21, player turn ends)
+	//	(opt) split #TODO: this one we will consider later.
+	player1.turn(dealer1);
+	
 
 	// 4. dealer choose to ()
 	//	(auto) Blackjack (==21, dealer turn ends)

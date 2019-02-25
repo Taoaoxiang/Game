@@ -30,7 +30,7 @@ public:
 	void showInitCards(DEALER);
 	//void showCards(DEALER);
 	void showCards(PLAYER);
-	//long getDeal(PLAYER);
+	unsigned playerTurn(PLAYER, DEALER);
 //private:
 
 };

@@ -74,3 +74,9 @@ unsigned PLAYER::getPoints()
 	RULE r;
 	return r.getPoints(*this);
 }
+
+unsigned PLAYER::turn(DEALER d)
+{
+	RULE r;
+	return r.playerTurn(*this, d);
+}

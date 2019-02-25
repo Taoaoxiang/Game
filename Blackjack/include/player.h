@@ -9,11 +9,13 @@
 #include "deck.h"
 #include "rule.h"
 #include "table.h"
+#include "dealer.h"
 
 class CARD;
 class DECK;
 class RULE;
 class TABLE;
+class DEALER;
 
 class PLAYER
 {
@@ -33,6 +35,7 @@ public:
 	void initCard(CARD);
 	void showCards();
 	unsigned getPoints();
+	unsigned turn(DEALER);
 private:
 	long playerMoney;
 	std::string playerName;

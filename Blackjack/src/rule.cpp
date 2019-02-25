@@ -74,3 +74,64 @@ void RULE::showCards(PLAYER p)
 	}
 	std::cout << msg.str() << std::endl;
 }
+
+unsigned RULE::playerTurn(PLAYER p, DEALER d)
+{
+	std::ostringstream msg;
+	msg << "        " << "Hit:    (H) or (h)\n"
+		<< "        " << "Stand:  (S) or (s)";
+	std::cout << "SYSTEM: Player's turn." << std::endl;
+	unsigned points = 0;
+	if ((points = getPoints(p)) == 21) {
+		std::cout << "        " << "Blackjack!" << std::endl;
+		return points;
+	}
+	std::string letter;
+	while ((points = getPoints(p)) < 21) {
+		if (p.deal <= p.playerMoney) {
+			std::cout << msg.str() << '\n'
+				<< "        " << "Double: (D) or (d)\n" 
+				<< "        " << "Please choose, default stand: ";
+			std::cin >> letter;
+			switch (letter[0]) {
+			case 'H': case 'h':
+				p.initCard(d.draw());
+				p.showCards();
+				break;
+			case 'S': case 's':
+				std::cout << "SYSTEM: You choose to stand." << std::endl;
+				return points;
+			case 'D': case 'd':
+				p.playerMoney -= p.deal;
+				p.deal *= 2;
+				std::cout << "SYSTEM: You choose to double your bet." << std::endl;
+				p.initCard(d.draw());
+				p.showCards();
+				std::cout << "        " << "Your bet is: $" << p.deal << ".\n"
+					<< "        " << "You have $" << p.playerMoney << " left." << std::endl;
+				return getPoints(p);
+			default:
+				std::cout << "SYSTEM: You choose to stand." << std::endl;
+				return points;
+			}
+		} else {
+			std::cout << msg.str() << "\n"
+				<< "        " << "Please choose, default stand: "; 
+			std::getline(std::cin, letter);
+			switch (letter[0]) {
+			case 'H': case 'h':
+				p.initCard(d.draw());
+				p.showCards();
+				break;
+			case 'S': case 's':
+				std::cout << "SYSTEM: You choose to stand." << std::endl;
+				return points;
+			default:
+				std::cout << "SYSTEM: You choose to stand." << std::endl;
+				return points;
+			}
+		}
+	}
+	std::cout << "        " << "Bust!" << std::endl;
+	return points;
+}
