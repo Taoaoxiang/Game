@@ -147,7 +147,6 @@ unsigned RULE::playerTurn(PLAYER p, DEALER d)
 			}
 		}
 	}
-	std::cout << "        " << "Bust!" << std::endl;
 	return points;
 }
 
@@ -161,12 +160,15 @@ unsigned RULE::dealerTurn(DEALER d, unsigned pPoint)
 		return points;
 	} else if (pPoint >= 21) {
 		return points;
-	}
-	// TODO : 
-	/*
+	}	
 	while (points < 17 ) {
-
+		if (points > pPoint) {
+			return points;
+		} else {
+			d.initCard(d.draw());
+			points = getPoints(d);	
+		}
+		showCards(d);
 	}
-	*/
 	return points;
 }

@@ -49,7 +49,6 @@ int main()
 	//	TODO: (opt) split #TODO: this one we will consider later.
 	unsigned playerPoints = 0;
 	playerPoints = player1.turn(dealer1);
-	
 
 	// 4. dealer choose to ()
 	//	(auto) Blackjack (==21, dealer turn ends)
