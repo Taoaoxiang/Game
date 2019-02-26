@@ -61,10 +61,15 @@ int main()
 			//	(auto) Bust (>21, dealer turn ends)
 			unsigned dealerPoints = 0;
 			dealerPoints = dealer1.turn(playerPoints);
+
+			// 5. compare
+			table1.compare();
+			
 		}
-		// 5. compare
-		table1.compare();
-		// 6. reset the cards
+		
+		// 6. clear the table
+		table1.clear();
+		
 
 		cout << "SYSTEM: End of round.\n" << endl;
 	}

@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <iostream>
+#include <iomanip>
 #include <limits>
 #include <vector>
 #include <string>
@@ -22,15 +23,15 @@ class PLAYER
 	friend class RULE;
 	friend class TABLE;
 public:
-	PLAYER(std::string, long);
+	PLAYER(std::string, float);
 	~PLAYER();
 	void defName(std::string);
-	void defMoney(long);
+	void defMoney(float);
 	std::string getName();
-	long getMoney();
+	float getMoney();
 	//void stand();
 	//void split();
-	long deal = 0;
+	long getDeal();
 	void makeBet();
 	void hit();
 	void initCard(CARD);
@@ -38,8 +39,11 @@ public:
 	unsigned getPoints();
 	unsigned turn(DEALER);
 private:
-	long playerMoney;
+	float playerMoney = 0;
+	float *money = &playerMoney;
 	std::string playerName;
+	float *deal = &myDeal;
+	float myDeal = 0;
 	std::vector<CARD> *cards = NULL;
 	std::vector<CARD> my_cards;
 };

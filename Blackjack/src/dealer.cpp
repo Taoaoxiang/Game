@@ -66,10 +66,17 @@ int DEALER::getCurrentNumberDeck()
 
 void DEALER::shuffle()
 {
-	if (deckPlayed == false && currentNumberDeck == nextNumberDeck) {
-		deck->shuffle();
-	}
-	else {
+	if (currentNumberDeck == nextNumberDeck) {
+		if (deckPlayed == false) {
+			deck->shuffle();
+		} else {
+			if (deck->getCurrentDeck().size() <= 52) {
+				deck->shuffle();
+			} else {
+				return;
+			}
+		}
+	} else {
 		deck->open(nextNumberDeck);
 		deck->shuffle();
 		currentNumberDeck = nextNumberDeck;

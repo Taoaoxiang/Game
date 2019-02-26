@@ -43,7 +43,8 @@ private:
 	std::vector<CARD> *cards = NULL;
 	std::vector<CARD> my_cards;
 	std::string name;
-	long money = 0;
+	float myMoney = 100000000000;
+	float *money = &myMoney;
 	int currentNumberDeck = 2;
 	int nextNumberDeck = 2;
 	bool deckPlayed = false;

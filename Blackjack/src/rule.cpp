@@ -33,10 +33,10 @@ unsigned RULE::getPoints(std::vector<CARD> c)
 			p2 += v;
 			break;
 		}
-		if (p1 >= 21) {
-			p = p1;
-		} else if (p2 <= 21) {
+		if (p2 <= 21) {
 			p = p2;
+		} else {
+			p = p1;
 		}
 	}
 	return p;
@@ -103,7 +103,7 @@ unsigned RULE::playerTurn(PLAYER p, DEALER d)
 	}
 	std::string letter;
 	while ((points = getPoints(p)) < 21) {
-		if (p.deal <= p.playerMoney && p.cards->size() == 2) {
+		if (*p.deal <= p.playerMoney && p.cards->size() == 2) {
 			std::cout << msg.str() << '\n'
 				<< "        " << "Double: (D) or (d)\n" 
 				<< "        " << "Please choose, default stand: ";
@@ -117,8 +117,8 @@ unsigned RULE::playerTurn(PLAYER p, DEALER d)
 				std::cout << "SYSTEM: You choose to stand." << std::endl;
 				return points;
 			case 'D': case 'd':
-				p.playerMoney -= p.deal;
-				p.deal *= 2;
+				p.playerMoney -= *p.deal;
+				*p.deal *= 2;
 				std::cout << "SYSTEM: You choose to double your bet." << std::endl;
 				p.initCard(d.draw());
 				p.showCards();
@@ -167,8 +167,8 @@ unsigned RULE::dealerTurn(DEALER d, unsigned pPoint)
 		} else {
 			d.initCard(d.draw());
 			points = getPoints(d);	
+			showCards(d);
 		}
-		showCards(d);
 	}
 	return points;
 }

@@ -31,9 +31,9 @@ public:
 	unsigned getTableNumber();
 	std::string getPlayerName();
 	long getPlayerMoney();
-	int checkBlackjack(DEALER, PLAYER);
 	int checkBlackjack();
 	void compare();
+	void clear();
 private:
 	unsigned tableNumber;
 	DEALER *dealer;
