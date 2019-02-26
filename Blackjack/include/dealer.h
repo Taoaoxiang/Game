@@ -19,6 +19,7 @@ class PLAYER;
 class DEALER
 {
 	friend class RULE;
+	friend class TABLE;
 public:	
 	DEALER();
 	DEALER(std::string);
@@ -42,6 +43,7 @@ private:
 	std::vector<CARD> *cards = NULL;
 	std::vector<CARD> my_cards;
 	std::string name;
+	long money = 0;
 	int currentNumberDeck = 2;
 	int nextNumberDeck = 2;
 	bool deckPlayed = false;

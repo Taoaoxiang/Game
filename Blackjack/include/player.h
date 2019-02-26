@@ -20,6 +20,7 @@ class DEALER;
 class PLAYER
 {
 	friend class RULE;
+	friend class TABLE;
 public:
 	PLAYER(std::string, long);
 	~PLAYER();

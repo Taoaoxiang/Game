@@ -9,11 +9,13 @@
 #include "deck.h"
 #include "dealer.h"
 #include "player.h"
+#include "rule.h"
 
 class CARD;
 class DECK;
 class DEALER;
 class PLAYER;
+class RULE;
 
 class TABLE
 {
@@ -29,6 +31,9 @@ public:
 	unsigned getTableNumber();
 	std::string getPlayerName();
 	long getPlayerMoney();
+	int checkBlackjack(DEALER, PLAYER);
+	int checkBlackjack();
+	void compare();
 private:
 	unsigned tableNumber;
 	DEALER *dealer;

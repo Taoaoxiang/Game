@@ -25,52 +25,54 @@ int main()
 	// He then shuffles them.
 	DECK deck1(2);
 	dealer1.defDeck(deck1);
-	dealer1.shuffle();
+	while (true) {
+		dealer1.shuffle();
 
-	// 1. player makes a bet															 
-	player1.makeBet();
-	//cout << "\r" << endl;
-	// 2. player and dealer initilize cards
-	//	2.1 draw: player -> dealer -> player -> dealer 
-	player1.initCard(dealer1.draw());
-	dealer1.initCard(dealer1.draw());
-	player1.initCard(dealer1.draw());
-	dealer1.initCard(dealer1.draw());
-	//	2.2 show cards
-	dealer1.showInitCards();
-	player1.showCards();
+		// 1. player makes a bet															 
+		player1.makeBet();
+		//cout << "\r" << endl;
+		// 2. player and dealer initilize cards
+		//	2.1 draw: player -> dealer -> player -> dealer 
+		player1.initCard(dealer1.draw());
+		dealer1.initCard(dealer1.draw());
+		player1.initCard(dealer1.draw());
+		dealer1.initCard(dealer1.draw());
+		//	2.2 show cards
+		dealer1.showInitCards();
+		player1.showCards();
 
-	// 3. player's turn
-	//	(auto) Blackjack (==21, player turn ends)
-	//	A. stand (no change, player turn ends)
-	//	B. hit (one draw, next)
-	//	C. double (one draw, player turn ends)
-	//	(auto) Bust (>21, player turn ends)
-	//	TODO: (opt) split #TODO: this one we will consider later.
-	unsigned playerPoints = 0;
-	playerPoints = player1.turn(dealer1);
+		if (table1.checkBlackjack() == 0) {
+			// 3. player's turn
+			//	(auto) Blackjack (==21, player turn ends)
+			//	A. stand (no change, player turn ends)
+			//	B. hit (one draw, next)
+			//	C. double (one draw, player turn ends)
+			//	(auto) Bust (>21, player turn ends)
+			//	TODO: (opt) split #TODO: this one we will consider later.
+			unsigned playerPoints = 0;
+			playerPoints = player1.turn(dealer1);
 
-	// 4. dealer choose to ()
-	//	(auto) Blackjack (==21, dealer turn ends)
-	//	(auto) player bust (dealer turn ends)
-	//	(auto) dealer points > player points (dealer turn ends)
-	//	A. stand (>=17, dealer turn ends)
-	//	B. hit (<17, until >=17)
-	//	(auto) Bust (>21, dealer turn ends)
-	unsigned dealerPoints = 0;
-	dealerPoints = dealer1.turn(playerPoints);
+			// 4. dealer choose to ()
+			//	(auto) Blackjack (==21, dealer turn ends)
+			//	(auto) player bust (dealer turn ends)
+			//	(auto) dealer points > player points (dealer turn ends)
+			//	A. stand (>=17, dealer turn ends)
+			//	B. hit (<17, until >=17)
+			//	(auto) Bust (>21, dealer turn ends)
+			unsigned dealerPoints = 0;
+			dealerPoints = dealer1.turn(playerPoints);
+		}
+		// 5. compare
+		table1.compare();
+		// 6. reset the cards
 
-	// 5. compare
-
+		cout << "SYSTEM: End of round.\n" << endl;
+	}
 
 
 	// 
 	
 
-	unsigned t;
-
-	//deck1.printCurrentDeck();
-	dealer1.draw();
 
 
 /*    while (true){
