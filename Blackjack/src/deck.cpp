@@ -83,3 +83,8 @@ int DECK::getAmountDeck()
 {
 	return amountDeck;
 }
+
+int DECK::getAmountCard()
+{
+	return (*deck).size();
+}

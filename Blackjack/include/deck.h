@@ -30,6 +30,7 @@ public:
 	std::vector<CARD> getCurrentDeck();
 	CARD getLastCard();
 	int getAmountDeck();
+	int getAmountCard();
 private:
 	std::vector<CARD> *deck = NULL;
 	std::vector<CARD> this_deck;

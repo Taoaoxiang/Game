@@ -47,7 +47,7 @@ private:
 	float *money = &myMoney;
 	int currentNumberDeck = 2;
 	int nextNumberDeck = 2;
-	bool deckPlayed = false;
+	int deckPlayed = 0;
 };
 
 #endif // !DEALER_H

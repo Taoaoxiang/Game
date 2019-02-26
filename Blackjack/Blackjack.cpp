@@ -64,7 +64,6 @@ int main()
 
 			// 5. compare
 			table1.compare();
-			
 		}
 		
 		// 6. clear the table
