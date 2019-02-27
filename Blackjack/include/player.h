@@ -29,11 +29,9 @@ public:
 	void defMoney(float);
 	std::string getName();
 	float getMoney();
-	//void stand();
 	//void split();
 	long getDeal();
 	void makeBet();
-	void hit();
 	void initCard(CARD);
 	void showCards();
 	unsigned getPoints();
@@ -44,8 +42,12 @@ private:
 	std::string playerName;
 	float *deal = &myDeal;
 	float myDeal = 0;
-	std::vector<CARD> *cards = NULL;
+	std::vector<CARD> *cards = &my_cards;
 	std::vector<CARD> my_cards;
+	unsigned mySplitTimes = 0;
+	unsigned *splitTimes = &mySplitTimes;
+	std::vector<std::vector <CARD>> mySplitCards;
+	std::vector<std::vector <CARD>> *splitCards = &mySplitCards;
 };
 
 #endif // !PLAYER_H

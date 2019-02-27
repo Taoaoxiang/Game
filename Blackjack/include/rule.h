@@ -30,7 +30,9 @@ public:
 	void showInitCards(DEALER);
 	void showCards(DEALER);
 	void showCards(PLAYER);
+	bool splitable(CARD, CARD);
 	unsigned playerTurn(PLAYER, DEALER);
+	std::vector<unsigned> playerTurnWSplit(PLAYER, DEALER);
 	unsigned dealerTurn(DEALER, unsigned);
 //private:
 

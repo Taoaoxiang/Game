@@ -4,7 +4,7 @@ PLAYER::PLAYER(std::string pN = "Player", float pM = 0)
 {
 	playerName = pN;
 	playerMoney = pM;
-	cards = &my_cards;
+	//cards = &my_cards;
 }
 
 PLAYER::~PLAYER()
@@ -63,11 +63,6 @@ void PLAYER::makeBet()
 		<< std::fixed
 		<< std::setprecision(1) << *deal << ".\n"
 		<< "        You have $" << *money << " left." << std::endl;
-}
-
-void PLAYER::hit()
-{
-	//
 }
 
 void PLAYER::initCard(CARD c)
