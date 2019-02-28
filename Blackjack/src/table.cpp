@@ -140,7 +140,9 @@ void TABLE::compare()
 void TABLE::clear()
 {
 	player->cards->clear();
-	dealer->cards->clear();
+	player->splitCards->clear();
+	*(player->splitTimes) = 0;
 	*player->deal = 0;
+	dealer->cards->clear();
 	std::cout << "SYSTEM: Table is clear!" << std::endl;
 }

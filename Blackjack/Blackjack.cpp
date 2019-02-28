@@ -41,6 +41,9 @@ int main()
 		dealer1.showInitCards();
 		player1.showCards();
 
+		std::vector<unsigned> v = player1.turnWSplit(dealer1);
+		cout << "Test: " << v[0] << endl;
+
 		if (table1.checkBlackjack() == 0) {
 			// 3. player's turn
 			//	(auto) Blackjack (==21, player turn ends)

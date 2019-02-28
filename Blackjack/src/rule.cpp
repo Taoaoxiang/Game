@@ -128,8 +128,8 @@ unsigned RULE::playerTurn(PLAYER p, DEALER d)
 				std::cout << "SYSTEM: You choose to double your bet." << std::endl;
 				p.initCard(d.draw());
 				p.showCards();
-				std::cout << "        " << "Your bet is: $" << p.deal << ".\n"
-					<< "        " << "You have $" << p.playerMoney << " left." << std::endl;
+				std::cout << "        " << "Your bet is: $" << *p.deal << ".\n"
+					<< "        " << "You have $" << *p.money << " left." << std::endl;
 				return getPoints(p);
 			default:
 				std::cout << "SYSTEM: You choose to stand." << std::endl;
@@ -158,6 +158,7 @@ unsigned RULE::playerTurn(PLAYER p, DEALER d)
 
 std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 {
+	std::vector<unsigned> v_P;
 	std::ostringstream msg;
 	msg << "        " << "Hit:    (H) or (h)\n"
 		<< "        " << "Stand:  (S) or (s)";
@@ -165,39 +166,48 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 	unsigned points = 0;
 	std::string letter;
 	while ((points = getPoints(p)) < 21) {
+		std::vector<CARD> tmpS;
 		if (*p.deal <= *p.money && p.cards->size() == 2) {
-			if (splitable((*p.cards)[0], (*p.cards)[1])) {
+			if (true || splitable((*p.cards)[0], (*p.cards)[1])) {
 				std::cout << msg.str() << '\n'
 					<< "        " << "Double: (D) or (d)\n"
 					<< "        " << "Split:  (P) or (p)\n"
 					<< "        " << "Please choose, default stand: ";
 				std::cin >> letter;
+				*p.splitTimes += 1;
 				switch (letter[0]) {
+					/*
 				case 'H': case 'h':
 					p.initCard(d.draw());
 					p.showCards();
-					break;
-					/*
+					break;*/
 				case 'S': case 's':
+					tmpS = *p.cards;
+					v_P.push_back(getPoints(tmpS));
+					p.splitCards->push_back(tmpS);
 					std::cout << "SYSTEM: You choose to stand." << std::endl;
-					return points;
+					return v_P;
 				case 'D': case 'd':
 					p.playerMoney -= *p.deal;
 					*p.deal *= 2;
 					std::cout << "SYSTEM: You choose to double your bet." << std::endl;
 					p.initCard(d.draw());
 					p.showCards();
-					std::cout << "        " << "Your bet is: $" << p.deal << ".\n"
-						<< "        " << "You have $" << p.playerMoney << " left." << std::endl;
-					return getPoints(p);
-					*/
+					tmpS = *p.cards;
+					v_P.push_back(getPoints(tmpS));
+					p.splitCards->push_back(tmpS);
+					std::cout << "        " << "Your bet is: $" << *p.deal << ".\n"
+						<< "        " << "You have $" << *p.money << " left." << std::endl;
+					return v_P;
 				default:
 					// allocate new memory for new vector 
 					// and then push it into splitCards
 					// return the same points
+					tmpS = *p.cards;
+					v_P.push_back(getPoints(tmpS));
+					p.splitCards->push_back(tmpS);
 					std::cout << "SYSTEM: You choose to stand." << std::endl;
-					//return points;
-					break;
+					return v_P;
 				}
 			}
 			/*
@@ -242,10 +252,10 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 			default:
 				std::cout << "SYSTEM: You choose to stand." << std::endl;
 				return points;
-			}
-		}*/
+			}*/
+		}
 	}
-	return std::vector<unsigned>();
+	return v_P;
 }
 
 unsigned RULE::dealerTurn(DEALER d, unsigned pPoint)

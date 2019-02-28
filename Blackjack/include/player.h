@@ -36,6 +36,7 @@ public:
 	void showCards();
 	unsigned getPoints();
 	unsigned turn(DEALER);
+	std::vector<unsigned> turnWSplit(DEALER);
 private:
 	float playerMoney = 0;
 	float *money = &playerMoney;
