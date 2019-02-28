@@ -21,6 +21,16 @@ CARD::CARD(unsigned v, char c)
 	suit = c;
 }
 
+CARD::CARD()
+{
+}
+
+void CARD::defCard(unsigned v, char c)
+{
+	value = v;
+	suit = c;
+}
+
 CARD::~CARD()
 {
 }
