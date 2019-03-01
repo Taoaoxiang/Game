@@ -163,18 +163,26 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 	msg << "        " << "Hit:    (H) or (h)\n"
 		<< "        " << "Stand:  (S) or (s)";
 	std::cout << "SYSTEM: Player's turn." << std::endl;
-	unsigned points = 0; //getPoints(p);
-	std::string letter;
-	// This is the temp stack of splited cards.
-	// Excludes the current playing cards and played cards.
-	// The played cards will be pushed back to p.splitCards.
-	std::vector<CARD> tmpCards;
-	std::vector<long> tmpDeals;
 	
+	// This is the temp stack of splited cards
+	std::vector<CARD> tmpCards;
+	// This is the temp stack of deals
+	std::vector<long> tmpDeals;
+
+	// This temporary points will be pushed to p.hand->vecPoints
+	unsigned points = 0;
+	std::string letter;
+
 	while (true) {
+		// tmpS is the played cards
+		// it will be pushed to p.hand->vecCards
 		std::vector<CARD> tmpS;
+		// tmpD is the current deal
+		// it will be pushed to p.hand->vecDeals
 		long tmpD;
-		CARD tmpA1; // = p.cards->back();
+		// tmpA1 is the splited card from p.cards->back()
+		// it will be pushed to tmpCards
+		CARD tmpA1;
 		if (*p.deal <= *p.money && p.cards->size() == 2) {
 			if (true || splitable((*p.cards)[0], (*p.cards)[1])) {
 				std::cout << msg.str() << '\n'
@@ -222,7 +230,6 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					}
 				case 'S': case 's':
 					tmpS = *p.cards;
-					//tmpP = getPoints(tmpS);
 					tmpD = *p.deal;
 					v_P.push_back(points);
 					//p.splitCards->push_back(tmpS);
