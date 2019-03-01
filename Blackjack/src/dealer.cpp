@@ -31,18 +31,11 @@ std::string DEALER::getName()
 	return name;
 }
 
-void DEALER::defDeck()
-{
-	deck = &this_deck;
-	deck->open(currentNumberDeck);
-}
-
 void DEALER::defDeck(DECK d)
 {
 	deck = &d;
 	currentNumberDeck = deck->getAmountDeck();
 	nextNumberDeck = currentNumberDeck;
-
 }
 
 void DEALER::setNumberDeck(int n)
@@ -50,7 +43,8 @@ void DEALER::setNumberDeck(int n)
 	if (deckPlayed == false) {
 		currentNumberDeck = n;
 		if (deck == NULL) {
-			deck = &this_deck;
+			//deck = &this_deck;
+			deck = new DECK;
 		}
 		deck->open(currentNumberDeck);
 		nextNumberDeck = n;

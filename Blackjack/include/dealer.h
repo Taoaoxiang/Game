@@ -38,8 +38,8 @@ public:
 	unsigned getPoints();
 	unsigned turn(unsigned);
 private:
-	DECK *deck;
-	DECK this_deck;
+	DECK *deck = NULL;
+	//DECK this_deck;
 	std::vector<CARD> *cards = NULL;
 	std::vector<CARD> my_cards;
 	std::string name;

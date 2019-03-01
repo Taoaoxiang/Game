@@ -169,8 +169,11 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 	// Excludes the current playing cards and played cards.
 	// The played cards will be pushed back to p.splitCards.
 	std::vector<CARD> tmpCards;
+	
 	while ((points = getPoints(p)) < 21) {
 		std::vector<CARD> tmpS;
+		unsigned tmpP;
+		long tmpD;
 		CARD tmpA1 = p.cards->back();
 		if (*p.deal <= *p.money && p.cards->size() == 2) {
 			if (true || splitable((*p.cards)[0], (*p.cards)[1])) {
@@ -183,6 +186,7 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 				case 'P': case 'p':
 					*p.splitTimes += 1;
 					// needs to get a deal vector
+
 					*p.deal *= 2;
 					tmpCards.push_back(tmpA1);
 					p.cards->pop_back();
@@ -220,14 +224,19 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					// and then push it into splitCards
 					// return the same points
 					tmpS = *p.cards;
-					v_P.push_back(getPoints(tmpS));
-					p.splitCards->push_back(tmpS);
+					tmpP = getPoints(tmpS);
+					tmpD = *p.deal;
+					v_P.push_back(tmpP);
+					//p.splitCards->push_back(tmpS);
+					p.hand->vecCards->push_back(tmpS);
+					p.hand->vecPoints->push_back(tmpP);
+					p.hand->vecDeals->push_back(tmpD);
 					std::cout << "SYSTEM: You choose to stand." << std::endl;
 					if (tmpCards.size() != 0) {
 						p.cards->clear();
-						//CARD c = tmpCards.pop_back();
-						//p.initCard(c);
+						p.initCard(tmpCards.back());
 						p.initCard(d.draw());
+						tmpCards.pop_back();
 						break;
 					} else {
 						return v_P;

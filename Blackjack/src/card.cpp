@@ -31,6 +31,12 @@ void CARD::defCard(unsigned v, char c)
 	suit = c;
 }
 
+CARD CARD::operator=(const CARD &c1)
+{
+	defCard(c1.value, c1.suit);
+	return *this;
+}
+
 CARD::~CARD()
 {
 }
