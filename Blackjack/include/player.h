@@ -18,6 +18,16 @@ class RULE;
 class TABLE;
 class DEALER;
 
+struct PLAYERHAND
+{
+	std::vector<std::vector <CARD>> v1;
+	std::vector<unsigned> v2;
+	std::vector<long> v3;
+	std::vector<std::vector <CARD>> *vecCards = &v1;
+	std::vector<unsigned> *vecPoints = &v2;
+	std::vector<long> *vecDeals = &v3;
+};
+
 class PLAYER
 {
 	friend class RULE;
@@ -49,6 +59,8 @@ private:
 	unsigned *splitTimes = &mySplitTimes;
 	std::vector<std::vector <CARD>> mySplitCards;
 	std::vector<std::vector <CARD>> *splitCards = &mySplitCards;
+	PLAYERHAND myHand;
+	PLAYERHAND *hand = &myHand;
 };
 
 #endif // !PLAYER_H
