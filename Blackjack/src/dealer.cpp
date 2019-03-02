@@ -109,3 +109,9 @@ unsigned DEALER::turn(unsigned pP)
 	RULE r;
 	return r.dealerTurn(*this, pP);
 }
+
+unsigned DEALER::turnWSplit(std::vector<unsigned> pP)
+{
+	RULE r;
+	return r.dealerTurnWSplit(*this, pP);
+}

@@ -37,6 +37,7 @@ public:
 	void showInitCards();
 	unsigned getPoints();
 	unsigned turn(unsigned);
+	unsigned turnWSplit(std::vector<unsigned>);
 private:
 	DECK *deck = NULL;
 	//DECK this_deck;

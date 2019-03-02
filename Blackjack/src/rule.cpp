@@ -86,6 +86,29 @@ bool RULE::splitable(CARD c1, CARD c2)
 	return false;
 }
 
+unsigned RULE::playerHit(PLAYER p, DEALER d)
+{
+	p.initCard(d.draw());
+	p.showCards();
+	return getPoints(p);
+}
+
+unsigned RULE::playerStand(PLAYER p)
+{
+	return getPoints(p);
+}
+
+void RULE::playerPushToHand(PLAYER p, long l)
+{
+	std::vector<CARD> current_cards = *p.cards;
+	unsigned current_points = getPoints(current_cards);
+	long current_deal = l;
+
+	p.hand->vecCards->push_back(current_cards);
+	p.hand->vecPoints->push_back(current_points);
+	p.hand->vecDeals->push_back(current_deal);
+}
+
 void RULE::showCards(DEALER d)
 {
 	std::ostringstream msg;
@@ -166,24 +189,18 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 	
 	// This is the temp stack of splited cards
 	std::vector<CARD> tmpCards;
-	// This is the temp stack of deals
-	std::vector<long> tmpDeals;
 
 	// This temporary points will be pushed to p.hand->vecPoints
 	unsigned points = 0;
 	std::string letter;
 
 	while (true) {
-		// tmpS is the played cards
-		// it will be pushed to p.hand->vecCards
-		std::vector<CARD> tmpS;
-		// tmpD is the current deal
-		// it will be pushed to p.hand->vecDeals
-		long tmpD;
 		// tmpA1 is the splited card from p.cards->back()
 		// it will be pushed to tmpCards
 		CARD tmpA1;
+		// if player has money to get double
 		if (*p.deal <= *p.money && p.cards->size() == 2) {
+			// if the initial cards splitable
 			if (true || splitable((*p.cards)[0], (*p.cards)[1])) {
 				std::cout << msg.str() << '\n'
 					<< "        " << "Double: (D) or (d)\n"
@@ -194,9 +211,7 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 				case 'P': case 'p':
 					*p.splitTimes += 1;
 					tmpA1 = p.cards->back();
-					tmpD = *p.deal;
 					*p.money -= *p.deal;
-					tmpDeals.push_back(tmpD);
 					tmpCards.push_back(tmpA1);
 					p.cards->pop_back();
 					p.initCard(d.draw());
@@ -204,144 +219,194 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					p.showCards();
 					break;
 				case 'H': case 'h':
-					p.initCard(d.draw());
-					p.showCards();
-					points = getPoints(p);
+					points = playerHit(p, d);
 					if (points >= 21) {
-						tmpS = *p.cards;
-						points = getPoints(tmpS);
-						tmpD = *p.deal;
 						v_P.push_back(points);
-						p.hand->vecCards->push_back(tmpS);
-						p.hand->vecPoints->push_back(points);
-						p.hand->vecDeals->push_back(tmpD);
-						std::cout << "SYSTEM: You choose to stand." << std::endl;
+						playerPushToHand(p, *p.deal);
+						// if we still have splited and unplayed cards
 						if (tmpCards.size() != 0) {
 							p.cards->clear();
 							p.initCard(tmpCards.back());
 							p.initCard(d.draw());
 							tmpCards.pop_back();
+							p.showCards();
 							break;
-						} else {
-							return v_P;
 						}
-					} else {
-						break;
-					}
+						else { return v_P; }
+					} 
+					else { break; }
 				case 'S': case 's':
-					tmpS = *p.cards;
-					tmpD = *p.deal;
+					points = playerStand(p);
 					v_P.push_back(points);
-					//p.splitCards->push_back(tmpS);
-					p.hand->vecCards->push_back(tmpS);
-					p.hand->vecPoints->push_back(points);
-					p.hand->vecDeals->push_back(tmpD);
+					playerPushToHand(p, *p.deal);
 					std::cout << "SYSTEM: You choose to stand." << std::endl;
 					if (tmpCards.size() != 0) {
-						*p.deal = tmpDeals.back();
-						tmpDeals.pop_back();
 						p.cards->clear();
 						p.initCard(tmpCards.back());
 						p.initCard(d.draw());
 						tmpCards.pop_back();
+						p.showCards();
 						break;
-					} else {
-						return v_P;
-					}
+					} 
+					else { return v_P; }
 				case 'D': case 'd':
 					*p.money -= *p.deal;
-					*p.deal *= 2;
 					std::cout << "SYSTEM: You choose to double your bet." << std::endl
-						<< "        " << "Your bet is: $" << *p.deal << ".\n"
+						<< "        " << "Your bet is: $" << (2 * (*p.deal)) << ".\n"
 						<< "        " << "You have $" << *p.money << " left." << std::endl;
-					p.initCard(d.draw());
-					p.showCards();
-					tmpS = *p.cards;
-					points = getPoints(tmpS);
-					tmpD = *p.deal;
+					points = playerHit(p, d);
 					v_P.push_back(points);
-					p.hand->vecCards->push_back(tmpS);
-					p.hand->vecPoints->push_back(points);
-					p.hand->vecDeals->push_back(tmpD);
+					playerPushToHand(p, (2*(*p.deal)));
 					if (tmpCards.size() != 0) {
-						*p.deal = tmpDeals.back();
-						tmpDeals.pop_back();
 						p.cards->clear();
 						p.initCard(tmpCards.back());
 						p.initCard(d.draw());
 						tmpCards.pop_back();
+						p.showCards();
 						break;
 					}
-					else {
-						return v_P;
-					}
+					else { return v_P; }
 				default:
-					tmpS = *p.cards;
-					points = getPoints(tmpS);
-					tmpD = *p.deal;
+					points = playerStand(p);
 					v_P.push_back(points);
-					//p.splitCards->push_back(tmpS);
-					p.hand->vecCards->push_back(tmpS);
-					p.hand->vecPoints->push_back(points);
-					p.hand->vecDeals->push_back(tmpD);
+					playerPushToHand(p, *p.deal);
 					std::cout << "SYSTEM: You choose to stand." << std::endl;
 					if (tmpCards.size() != 0) {
-						*p.deal = tmpDeals.back();
-						tmpDeals.pop_back();
 						p.cards->clear();
 						p.initCard(tmpCards.back());
 						p.initCard(d.draw());
-
 						tmpCards.pop_back();
+						p.showCards();
 						break;
-					} else {
-						return v_P;
 					} 
-				} // end of one decision
-			} // end of splitable cards
-			/*
-			std::cout << msg.str() << '\n'
-				<< "        " << "Double: (D) or (d)\n"
-				<< "        " << "Please choose, default stand: ";
-			std::cin >> letter;
-			switch (letter[0]) {
-			case 'H': case 'h':
-				p.initCard(d.draw());
-				p.showCards();
-				break;
-			case 'S': case 's':
-				std::cout << "SYSTEM: You choose to stand." << std::endl;
-				return points;
-			case 'D': case 'd':
-				p.playerMoney -= *p.deal;
-				*p.deal *= 2;
-				std::cout << "SYSTEM: You choose to double your bet." << std::endl;
-				p.initCard(d.draw());
-				p.showCards();
-				std::cout << "        " << "Your bet is: $" << p.deal << ".\n"
-					<< "        " << "You have $" << p.playerMoney << " left." << std::endl;
-				return getPoints(p);
-			default:
-				std::cout << "SYSTEM: You choose to stand." << std::endl;
-				return points;
+					else { return v_P; }
+				} 
+				// end of one decision
+			} 
+			// end of splitable cards
+			else {
+				std::cout << msg.str() << '\n'
+					<< "        " << "Double: (D) or (d)\n"
+					<< "        " << "Please choose, default stand: ";
+				std::cin >> letter;
+				switch (letter[0]) {
+				case 'H': case 'h':
+					points = playerHit(p, d);
+					if (points >= 21) {
+						v_P.push_back(points);
+						playerPushToHand(p, *p.deal);
+						// if we still have splited and unplayed cards
+						if (tmpCards.size() != 0) {
+							p.cards->clear();
+							p.initCard(tmpCards.back());
+							p.initCard(d.draw());
+							tmpCards.pop_back();
+							p.showCards();
+							break;
+						} 
+						else { return v_P; }
+					} 
+					else { break; }
+				case 'S': case 's':
+					points = playerStand(p);
+					v_P.push_back(points);
+					playerPushToHand(p, *p.deal);
+					std::cout << "SYSTEM: You choose to stand." << std::endl;
+					if (tmpCards.size() != 0) {
+						p.cards->clear();
+						p.initCard(tmpCards.back());
+						p.initCard(d.draw());
+						tmpCards.pop_back();
+						p.showCards();
+						break;
+					} 
+					else { return v_P; }
+				case 'D': case 'd':
+					*p.money -= *p.deal;
+					std::cout << "SYSTEM: You choose to double your bet." << std::endl
+						<< "        " << "Your bet is: $" << (2 * (*p.deal)) << ".\n"
+						<< "        " << "You have $" << *p.money << " left." << std::endl;
+					points = playerHit(p, d);
+					v_P.push_back(points);
+					playerPushToHand(p, (2 * (*p.deal)));
+					if (tmpCards.size() != 0) {
+						p.cards->clear();
+						p.initCard(tmpCards.back());
+						p.initCard(d.draw());
+						tmpCards.pop_back();
+						p.showCards();
+						break;
+					}
+					else { return v_P; }
+				default:
+					points = playerStand(p);
+					v_P.push_back(points);
+					playerPushToHand(p, *p.deal);
+					std::cout << "SYSTEM: You choose to stand." << std::endl;
+					if (tmpCards.size() != 0) {
+						p.cards->clear();
+						p.initCard(tmpCards.back());
+						p.initCard(d.draw());
+						tmpCards.pop_back();
+						p.showCards();
+						break;
+					}
+					else { return v_P; }
+				}
 			}
-		}
+		} 
+		// if player doesn't have money to get double
 		else {
 			std::cout << msg.str() << "\n"
 				<< "        " << "Please choose, default stand: ";
 			std::cin >> letter;
 			switch (letter[0]) {
 			case 'H': case 'h':
-				p.initCard(d.draw());
-				p.showCards();
-				break;
+				points = playerHit(p, d);
+				if (points >= 21) {
+					v_P.push_back(points);
+					playerPushToHand(p, *p.deal);
+					// if we still have splited and unplayed cards
+					if (tmpCards.size() != 0) {
+						p.cards->clear();
+						p.initCard(tmpCards.back());
+						p.initCard(d.draw());
+						tmpCards.pop_back();
+						p.showCards();
+						break;
+					}
+					else { return v_P; }
+				}
+				else { break; }
 			case 'S': case 's':
+				points = playerStand(p);
+				v_P.push_back(points);
+				playerPushToHand(p, *p.deal);
 				std::cout << "SYSTEM: You choose to stand." << std::endl;
-				return points;
+				if (tmpCards.size() != 0) {
+					p.cards->clear();
+					p.initCard(tmpCards.back());
+					p.initCard(d.draw());
+					tmpCards.pop_back();
+					p.showCards();
+					break;
+				}
+				else { return v_P; }
 			default:
+				points = playerStand(p);
+				v_P.push_back(points);
+				playerPushToHand(p, *p.deal);
 				std::cout << "SYSTEM: You choose to stand." << std::endl;
-				return points;
-			}*/
+				if (tmpCards.size() != 0) {
+					p.cards->clear();
+					p.initCard(tmpCards.back());
+					p.initCard(d.draw());
+					tmpCards.pop_back();
+					p.showCards();
+					break;
+				}
+				else { return v_P; }
+			}
 		}
 	}
 	return v_P;
@@ -363,6 +428,22 @@ unsigned RULE::dealerTurn(DEALER d, unsigned pPoint)
 			points = getPoints(d);	
 			showCards(d);
 		}
+	}
+	return points;
+}
+
+unsigned RULE::dealerTurnWSplit(DEALER d, std::vector<unsigned> ps)
+{
+	unsigned points;
+	if (ps.size() == 1) { points = dealerTurn(d, ps[0]); }
+	else if (ps.size() > 1 ) {
+		auto minPP = std::min_element(ps.begin(), ps.end());
+		if (*minPP > 21) { points = dealerTurn(d, *minPP); }
+		else { points = dealerTurn(d, 21); }
+	}
+	else {
+		std::cout << "SYSERR: No Points of Player's Cards." << std::endl;
+		return 0;
 	}
 	return points;
 }

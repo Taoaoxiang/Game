@@ -139,10 +139,12 @@ void TABLE::compare()
 
 void TABLE::clear()
 {
-	player->cards->clear();
-	player->splitCards->clear();
-	*(player->splitTimes) = 0;
 	*player->deal = 0;
+	player->cards->clear();
+	*player->splitTimes = 0;
+	player->hand->vecCards->clear();
+	player->hand->vecDeals->clear();
+	player->hand->vecPoints->clear();
 	dealer->cards->clear();
 	std::cout << "SYSTEM: Table is clear!" << std::endl;
 }

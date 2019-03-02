@@ -57,8 +57,6 @@ private:
 	std::vector<CARD> my_cards;
 	unsigned mySplitTimes = 0;
 	unsigned *splitTimes = &mySplitTimes;
-	std::vector<std::vector <CARD>> mySplitCards;
-	std::vector<std::vector <CARD>> *splitCards = &mySplitCards;
 	PLAYERHAND myHand;
 	PLAYERHAND *hand = &myHand;
 };

@@ -5,6 +5,7 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include <algorithm>
 #include "card.h"
 #include "deck.h"
 #include "dealer.h"
@@ -31,9 +32,13 @@ public:
 	void showCards(DEALER);
 	void showCards(PLAYER);
 	bool splitable(CARD, CARD);
+	unsigned playerHit(PLAYER, DEALER);
+	unsigned playerStand(PLAYER);
+	void playerPushToHand(PLAYER, long);
 	unsigned playerTurn(PLAYER, DEALER);
 	std::vector<unsigned> playerTurnWSplit(PLAYER, DEALER);
 	unsigned dealerTurn(DEALER, unsigned);
+	unsigned dealerTurnWSplit(DEALER, std::vector<unsigned>);
 //private:
 
 };

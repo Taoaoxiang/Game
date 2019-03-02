@@ -30,7 +30,7 @@ int main()
 
 		// 1. player makes a bet															 
 		player1.makeBet();
-		//cout << "\r" << endl;
+
 		// 2. player and dealer initilize cards
 		//	2.1 draw: player -> dealer -> player -> dealer 
 		player1.initCard(dealer1.draw());
@@ -41,9 +41,6 @@ int main()
 		dealer1.showInitCards();
 		player1.showCards();
 
-		std::vector<unsigned> v = player1.turnWSplit(dealer1);
-		cout << "Test: " << v[0] << endl;
-
 		if (table1.checkBlackjack() == 0) {
 			// 3. player's turn
 			//	(auto) Blackjack (==21, player turn ends)
@@ -51,10 +48,9 @@ int main()
 			//	B. hit (one draw, next)
 			//	C. double (one draw, player turn ends)
 			//	(auto) Bust (>21, player turn ends)
-			//	TODO: (opt) split #TODO: this one we will consider later.
-			unsigned playerPoints = 0;
-			playerPoints = player1.turn(dealer1);
-
+			//	(opt) split
+			std::vector<unsigned> playerPoints = player1.turnWSplit(dealer1);
+						
 			// 4. dealer choose to ()
 			//	(auto) Blackjack (==21, dealer turn ends)
 			//	(auto) player bust (dealer turn ends)
@@ -62,8 +58,7 @@ int main()
 			//	A. stand (>=17, dealer turn ends)
 			//	B. hit (<17, until >=17)
 			//	(auto) Bust (>21, dealer turn ends)
-			unsigned dealerPoints = 0;
-			dealerPoints = dealer1.turn(playerPoints);
+			 unsigned dealerPoints = dealer1.turnWSplit(playerPoints);
 
 			// 5. compare
 			table1.compare();

@@ -92,21 +92,5 @@ unsigned PLAYER::turn(DEALER d)
 std::vector<unsigned> PLAYER::turnWSplit(DEALER d)
 {
 	RULE r;
-	// TEST
-	std::vector<unsigned> t1 = r.playerTurnWSplit(*this, d);
-	for (std::vector<std::vector <CARD>>::iterator i = splitCards->begin();
-		i != splitCards->end(); ++i) {
-		std::cout << "\nTEST3: START OF THIS TEST!" << std::endl;
-		for (std::vector <CARD>::iterator a = i->begin();
-			a != i->end(); ++a) {
-			std::string s1= a->front();
-			unsigned i1 = a->get_value();
-			std::cout << "TEST: " << s1 << "\n" << "TEST2: " << i1 << std::endl;
-		}
-		std::cout << "TEST3: END OF THIS TEST!\n" << std::endl;
-	}
-	return t1;
-	// END of TEST
-
-	//return r.playerTurnWSplit(*this, d);
+	return r.playerTurnWSplit(*this, d);
 }
