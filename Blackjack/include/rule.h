@@ -18,6 +18,7 @@ class DEALER;
 class PLAYER;
 class TABLE;
 
+
 class RULE
 {
 	friend class DEALER;
@@ -32,6 +33,9 @@ public:
 	void showCards(DEALER);
 	void showCards(PLAYER);
 	bool splitable(CARD, CARD);
+	unsigned recursive21(PLAYER, DEALER, 
+		std::vector<unsigned>, std::vector<CARD>);
+	void nextAndShow(PLAYER, DEALER, std::vector<CARD>);
 	unsigned playerHit(PLAYER, DEALER);
 	unsigned playerStand(PLAYER);
 	void playerPushToHand(PLAYER, long);

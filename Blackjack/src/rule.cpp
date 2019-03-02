@@ -86,6 +86,40 @@ bool RULE::splitable(CARD c1, CARD c2)
 	return false;
 }
 
+unsigned RULE::recursive21(PLAYER player, DEALER dealer, 
+	std::vector<unsigned> vec_P, std::vector<CARD> vec_C)
+{
+	PLAYER *pP = &player;
+	DEALER *dD = &dealer;
+	std::vector<unsigned> *vP = &vec_P;
+	std::vector<CARD> *vC = &vec_C;
+	unsigned points = getPoints(*pP);
+	if (points >= 21) {
+		vP->push_back(points);
+		playerPushToHand(*pP, *(pP->deal));
+		if (vC->size() != 0) {
+			nextAndShow(*pP, *dD, *vC);
+			points = recursive21(*pP, *dD, *vP, *vC);
+			return points;
+		}
+		else { return points; }
+	}
+	else { return points; }	
+}
+
+void RULE::nextAndShow(PLAYER p1, DEALER d1, 
+	std::vector<CARD> v1)
+{
+	PLAYER *p = &p1;
+	DEALER *d = &d1;
+	std::vector<CARD> *vc = &v1;
+	p->cards->clear();
+	p->initCard(vc->back());
+	p->initCard(d->draw());
+	vc->pop_back();
+	p->showCards();
+}
+
 unsigned RULE::playerHit(PLAYER p, DEALER d)
 {
 	p.initCard(d.draw());
@@ -191,13 +225,17 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 	std::vector<CARD> tmpCards;
 
 	// This temporary points will be pushed to p.hand->vecPoints
-	unsigned points = 0;
+	unsigned points = 0; 
 	std::string letter;
 
 	while (true) {
 		// tmpA1 is the splited card from p.cards->back()
 		// it will be pushed to tmpCards
 		CARD tmpA1;
+		// if player's current point is 21
+		if ((points = recursive21(p, d, v_P, tmpCards))>=21) {
+			return v_P;
+		}
 		// if player has money to get double
 		if (*p.deal <= *p.money && p.cards->size() == 2) {
 			// if the initial cards splitable
@@ -225,11 +263,7 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 						playerPushToHand(p, *p.deal);
 						// if we still have splited and unplayed cards
 						if (tmpCards.size() != 0) {
-							p.cards->clear();
-							p.initCard(tmpCards.back());
-							p.initCard(d.draw());
-							tmpCards.pop_back();
-							p.showCards();
+							nextAndShow(p, d, tmpCards);
 							break;
 						}
 						else { return v_P; }
@@ -241,11 +275,7 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					playerPushToHand(p, *p.deal);
 					std::cout << "SYSTEM: You choose to stand." << std::endl;
 					if (tmpCards.size() != 0) {
-						p.cards->clear();
-						p.initCard(tmpCards.back());
-						p.initCard(d.draw());
-						tmpCards.pop_back();
-						p.showCards();
+						nextAndShow(p, d, tmpCards);
 						break;
 					} 
 					else { return v_P; }
@@ -258,11 +288,7 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					v_P.push_back(points);
 					playerPushToHand(p, (2*(*p.deal)));
 					if (tmpCards.size() != 0) {
-						p.cards->clear();
-						p.initCard(tmpCards.back());
-						p.initCard(d.draw());
-						tmpCards.pop_back();
-						p.showCards();
+						nextAndShow(p, d, tmpCards);
 						break;
 					}
 					else { return v_P; }
@@ -272,11 +298,7 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					playerPushToHand(p, *p.deal);
 					std::cout << "SYSTEM: You choose to stand." << std::endl;
 					if (tmpCards.size() != 0) {
-						p.cards->clear();
-						p.initCard(tmpCards.back());
-						p.initCard(d.draw());
-						tmpCards.pop_back();
-						p.showCards();
+						nextAndShow(p, d, tmpCards);
 						break;
 					} 
 					else { return v_P; }
@@ -297,11 +319,7 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 						playerPushToHand(p, *p.deal);
 						// if we still have splited and unplayed cards
 						if (tmpCards.size() != 0) {
-							p.cards->clear();
-							p.initCard(tmpCards.back());
-							p.initCard(d.draw());
-							tmpCards.pop_back();
-							p.showCards();
+							nextAndShow(p, d, tmpCards);
 							break;
 						} 
 						else { return v_P; }
@@ -313,11 +331,7 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					playerPushToHand(p, *p.deal);
 					std::cout << "SYSTEM: You choose to stand." << std::endl;
 					if (tmpCards.size() != 0) {
-						p.cards->clear();
-						p.initCard(tmpCards.back());
-						p.initCard(d.draw());
-						tmpCards.pop_back();
-						p.showCards();
+						nextAndShow(p, d, tmpCards);
 						break;
 					} 
 					else { return v_P; }
@@ -330,11 +344,7 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					v_P.push_back(points);
 					playerPushToHand(p, (2 * (*p.deal)));
 					if (tmpCards.size() != 0) {
-						p.cards->clear();
-						p.initCard(tmpCards.back());
-						p.initCard(d.draw());
-						tmpCards.pop_back();
-						p.showCards();
+						nextAndShow(p, d, tmpCards);
 						break;
 					}
 					else { return v_P; }
@@ -344,11 +354,7 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					playerPushToHand(p, *p.deal);
 					std::cout << "SYSTEM: You choose to stand." << std::endl;
 					if (tmpCards.size() != 0) {
-						p.cards->clear();
-						p.initCard(tmpCards.back());
-						p.initCard(d.draw());
-						tmpCards.pop_back();
-						p.showCards();
+						nextAndShow(p, d, tmpCards);
 						break;
 					}
 					else { return v_P; }
@@ -368,11 +374,7 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					playerPushToHand(p, *p.deal);
 					// if we still have splited and unplayed cards
 					if (tmpCards.size() != 0) {
-						p.cards->clear();
-						p.initCard(tmpCards.back());
-						p.initCard(d.draw());
-						tmpCards.pop_back();
-						p.showCards();
+						nextAndShow(p, d, tmpCards);
 						break;
 					}
 					else { return v_P; }
@@ -384,11 +386,7 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 				playerPushToHand(p, *p.deal);
 				std::cout << "SYSTEM: You choose to stand." << std::endl;
 				if (tmpCards.size() != 0) {
-					p.cards->clear();
-					p.initCard(tmpCards.back());
-					p.initCard(d.draw());
-					tmpCards.pop_back();
-					p.showCards();
+					nextAndShow(p, d, tmpCards);
 					break;
 				}
 				else { return v_P; }
@@ -398,11 +396,7 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 				playerPushToHand(p, *p.deal);
 				std::cout << "SYSTEM: You choose to stand." << std::endl;
 				if (tmpCards.size() != 0) {
-					p.cards->clear();
-					p.initCard(tmpCards.back());
-					p.initCard(d.draw());
-					tmpCards.pop_back();
-					p.showCards();
+					nextAndShow(p, d, tmpCards);
 					break;
 				}
 				else { return v_P; }
