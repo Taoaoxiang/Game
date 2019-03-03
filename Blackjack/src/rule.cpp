@@ -113,11 +113,13 @@ void RULE::nextAndShow(PLAYER p1, DEALER d1,
 	PLAYER *p = &p1;
 	DEALER *d = &d1;
 	std::vector<CARD> *vc = &v1;
+	std::cout << "T1: before "<< vc->size() << std::endl;
 	p->cards->clear();
 	p->initCard(vc->back());
 	p->initCard(d->draw());
 	vc->pop_back();
 	p->showCards();
+	std::cout << "T2: after " << vc->size() << std::endl;
 }
 
 unsigned RULE::playerHit(PLAYER p, DEALER d)
