@@ -252,7 +252,9 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					*p.splitTimes += 1;
 					tmpA1 = p.cards->back();
 					*p.money -= *p.deal;
+					std::cout << "T beforeP: " << tmpCards.size() << std::endl;
 					tmpCards.push_back(tmpA1);
+					std::cout << "T afterP: " << tmpCards.size() << std::endl;
 					p.cards->pop_back();
 					p.initCard(d.draw());
 					std::cout << "SYSTEM: You choose to split." << std::endl;
@@ -260,26 +262,19 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					break;
 				case 'H': case 'h':
 					points = playerHit(p, d);
-					if (points >= 21) {
-						v_P.push_back(points);
-						playerPushToHand(p, *p.deal);
-						// if we still have splited and unplayed cards
-						if (tmpCards.size() != 0) {
-							nextAndShow(p, d, tmpCards);
-							break;
-						}
-						else { return v_P; }
-					} 
+					if ((points = recursive21(p, d, v_P, tmpCards)) >= 21) { return v_P; }
 					else { break; }
 				case 'S': case 's':
 					points = playerStand(p);
 					v_P.push_back(points);
 					playerPushToHand(p, *p.deal);
 					std::cout << "SYSTEM: You choose to stand." << std::endl;
+					std::cout << "T beforeP: " << tmpCards.size() << std::endl;
 					if (tmpCards.size() != 0) {
 						nextAndShow(p, d, tmpCards);
-						break;
-					} 
+						if ((points = recursive21(p, d, v_P, tmpCards)) >= 21) { return v_P; }
+						else { break; }
+					}
 					else { return v_P; }
 				case 'D': case 'd':
 					*p.money -= *p.deal;
@@ -291,7 +286,8 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					playerPushToHand(p, (2*(*p.deal)));
 					if (tmpCards.size() != 0) {
 						nextAndShow(p, d, tmpCards);
-						break;
+						if ((points = recursive21(p, d, v_P, tmpCards)) >= 21) { return v_P; }
+						else { break; }
 					}
 					else { return v_P; }
 				default:
@@ -301,8 +297,9 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					std::cout << "SYSTEM: You choose to stand." << std::endl;
 					if (tmpCards.size() != 0) {
 						nextAndShow(p, d, tmpCards);
-						break;
-					} 
+						if ((points = recursive21(p, d, v_P, tmpCards)) >= 21) { return v_P; }
+						else { break; }
+					}
 					else { return v_P; }
 				} 
 				// end of one decision
@@ -316,16 +313,7 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 				switch (letter[0]) {
 				case 'H': case 'h':
 					points = playerHit(p, d);
-					if (points >= 21) {
-						v_P.push_back(points);
-						playerPushToHand(p, *p.deal);
-						// if we still have splited and unplayed cards
-						if (tmpCards.size() != 0) {
-							nextAndShow(p, d, tmpCards);
-							break;
-						} 
-						else { return v_P; }
-					} 
+					if ((points = recursive21(p, d, v_P, tmpCards)) >= 21) { return v_P; }
 					else { break; }
 				case 'S': case 's':
 					points = playerStand(p);
@@ -334,8 +322,9 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					std::cout << "SYSTEM: You choose to stand." << std::endl;
 					if (tmpCards.size() != 0) {
 						nextAndShow(p, d, tmpCards);
-						break;
-					} 
+						if ((points = recursive21(p, d, v_P, tmpCards)) >= 21) { return v_P; }
+						else { break; }
+					}
 					else { return v_P; }
 				case 'D': case 'd':
 					*p.money -= *p.deal;
@@ -347,7 +336,8 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					playerPushToHand(p, (2 * (*p.deal)));
 					if (tmpCards.size() != 0) {
 						nextAndShow(p, d, tmpCards);
-						break;
+						if ((points = recursive21(p, d, v_P, tmpCards)) >= 21) { return v_P; }
+						else { break; }
 					}
 					else { return v_P; }
 				default:
@@ -357,7 +347,8 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					std::cout << "SYSTEM: You choose to stand." << std::endl;
 					if (tmpCards.size() != 0) {
 						nextAndShow(p, d, tmpCards);
-						break;
+						if ((points = recursive21(p, d, v_P, tmpCards)) >= 21) { return v_P; }
+						else { break; }
 					}
 					else { return v_P; }
 				}
@@ -371,16 +362,7 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 			switch (letter[0]) {
 			case 'H': case 'h':
 				points = playerHit(p, d);
-				if (points >= 21) {
-					v_P.push_back(points);
-					playerPushToHand(p, *p.deal);
-					// if we still have splited and unplayed cards
-					if (tmpCards.size() != 0) {
-						nextAndShow(p, d, tmpCards);
-						break;
-					}
-					else { return v_P; }
-				}
+				if ((points = recursive21(p, d, v_P, tmpCards)) >= 21) { return v_P; }
 				else { break; }
 			case 'S': case 's':
 				points = playerStand(p);
@@ -389,8 +371,9 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 				std::cout << "SYSTEM: You choose to stand." << std::endl;
 				if (tmpCards.size() != 0) {
 					nextAndShow(p, d, tmpCards);
-					break;
-				}
+					if ((points = recursive21(p, d, v_P, tmpCards)) >= 21) { return v_P; }
+					else { break; }
+				} 
 				else { return v_P; }
 			default:
 				points = playerStand(p);
@@ -399,7 +382,8 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 				std::cout << "SYSTEM: You choose to stand." << std::endl;
 				if (tmpCards.size() != 0) {
 					nextAndShow(p, d, tmpCards);
-					break;
+					if ((points = recursive21(p, d, v_P, tmpCards)) >= 21) { return v_P; }
+					else { break; }
 				}
 				else { return v_P; }
 			}
