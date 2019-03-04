@@ -107,19 +107,19 @@ unsigned RULE::recursive21(PLAYER player, DEALER dealer,
 	else { return points; }	
 }
 
-void RULE::nextAndShow(PLAYER p1, DEALER d1, 
-	std::vector<CARD> v1)
+void RULE::nextAndShow(PLAYER &p, DEALER &d, 
+	std::vector<CARD> &v1)
 {
-	PLAYER *p = &p1;
-	DEALER *d = &d1;
-	std::vector<CARD> *vc = &v1;
-	std::cout << "T1: before "<< vc->size() << std::endl;
-	p->cards->clear();
-	p->initCard(vc->back());
-	p->initCard(d->draw());
-	vc->pop_back();
-	p->showCards();
-	std::cout << "T2: after " << vc->size() << std::endl;
+	//PLAYER *p = &p1;
+	//DEALER *d = &d1;
+	//std::vector<CARD> *vc = &v1;
+	std::cout << "T1: before "<< v1.size() << std::endl;
+	p.cards->clear();
+	p.initCard(v1.back());
+	p.initCard(d.draw());
+	v1.pop_back();
+	p.showCards();
+	std::cout << "T2: after " << v1.size() << std::endl;
 }
 
 unsigned RULE::playerHit(PLAYER p, DEALER d)
@@ -269,9 +269,11 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					v_P.push_back(points);
 					playerPushToHand(p, *p.deal);
 					std::cout << "SYSTEM: You choose to stand." << std::endl;
-					std::cout << "T beforeP: " << tmpCards.size() << std::endl;
+					std::cout << "T1 beforeP: " << tmpCards.size() << std::endl;
 					if (tmpCards.size() != 0) {
+						std::cout << "T2: before " << tmpCards.size() << std::endl;
 						nextAndShow(p, d, tmpCards);
+						std::cout << "T3: after " << tmpCards.size() << std::endl;
 						if ((points = recursive21(p, d, v_P, tmpCards)) >= 21) { return v_P; }
 						else { break; }
 					}
