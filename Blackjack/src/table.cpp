@@ -137,6 +137,11 @@ void TABLE::compare()
 	}
 }
 
+void TABLE::compareWSplit()
+{
+
+}
+
 void TABLE::clear()
 {
 	*player->deal = 0;

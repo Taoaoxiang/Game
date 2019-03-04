@@ -110,16 +110,11 @@ unsigned RULE::recursive21(PLAYER player, DEALER dealer,
 void RULE::nextAndShow(PLAYER &p, DEALER &d, 
 	std::vector<CARD> &v1)
 {
-	//PLAYER *p = &p1;
-	//DEALER *d = &d1;
-	//std::vector<CARD> *vc = &v1;
-	std::cout << "T1: before "<< v1.size() << std::endl;
 	p.cards->clear();
 	p.initCard(v1.back());
 	p.initCard(d.draw());
 	v1.pop_back();
 	p.showCards();
-	std::cout << "T2: after " << v1.size() << std::endl;
 }
 
 unsigned RULE::playerHit(PLAYER p, DEALER d)
@@ -231,13 +226,6 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 	std::string letter;
 
 	while (true) {
-		// tmpA1 is the splited card from p.cards->back()
-		// it will be pushed to tmpCards
-		CARD tmpA1;
-		// if player's current point is 21
-		if ((points = recursive21(p, d, v_P, tmpCards))>=21) {
-			return v_P;
-		}
 		// if player has money to get double
 		if (*p.deal <= *p.money && p.cards->size() == 2) {
 			// if the initial cards splitable
@@ -249,17 +237,19 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 				std::cin >> letter;
 				switch (letter[0]) {
 				case 'P': case 'p':
+				{
+					// to be able to declare variable within switch
+					// we have to use parenthesis 
 					*p.splitTimes += 1;
-					tmpA1 = p.cards->back();
+					CARD tmpA1 = p.cards->back();
 					*p.money -= *p.deal;
-					std::cout << "T beforeP: " << tmpCards.size() << std::endl;
 					tmpCards.push_back(tmpA1);
-					std::cout << "T afterP: " << tmpCards.size() << std::endl;
 					p.cards->pop_back();
 					p.initCard(d.draw());
 					std::cout << "SYSTEM: You choose to split." << std::endl;
 					p.showCards();
 					break;
+				}
 				case 'H': case 'h':
 					points = playerHit(p, d);
 					if ((points = recursive21(p, d, v_P, tmpCards)) >= 21) { return v_P; }
@@ -269,11 +259,8 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					v_P.push_back(points);
 					playerPushToHand(p, *p.deal);
 					std::cout << "SYSTEM: You choose to stand." << std::endl;
-					std::cout << "T1 beforeP: " << tmpCards.size() << std::endl;
 					if (tmpCards.size() != 0) {
-						std::cout << "T2: before " << tmpCards.size() << std::endl;
 						nextAndShow(p, d, tmpCards);
-						std::cout << "T3: after " << tmpCards.size() << std::endl;
 						if ((points = recursive21(p, d, v_P, tmpCards)) >= 21) { return v_P; }
 						else { break; }
 					}

@@ -33,6 +33,7 @@ public:
 	long getPlayerMoney();
 	int checkBlackjack();
 	void compare();
+	void compareWSplit();
 	void clear();
 private:
 	unsigned tableNumber;
