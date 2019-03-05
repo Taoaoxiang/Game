@@ -34,7 +34,8 @@ public:
 	int checkBlackjack();
 	void compare();
 	int compare(unsigned, unsigned);
-	void compareWSplit();
+	void playerHandPop();
+	int compareWSplit();
 	void clear();
 private:
 	unsigned tableNumber;

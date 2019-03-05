@@ -155,9 +155,39 @@ int TABLE::compare(unsigned dP, unsigned pP)
 	return -2;
 }
 
-void TABLE::compareWSplit()
+void TABLE::playerHandPop()
 {
+	player->hand->vecCards->pop_back();
+	player->hand->vecDeals->pop_back();
+	player->hand->vecPoints->pop_back();
+}
 
+int TABLE::compareWSplit()
+{
+	unsigned dP = dealer->getPoints();
+	if (player->hand->vecPoints->size() == player->hand->vecDeals->size()
+		&& player->hand->vecPoints->size() == player->hand->vecCards->size()) {
+
+		// We have to show dealer's cards here
+
+		while (player->hand->vecPoints->size()!=0) {
+			unsigned pP = player->hand->vecPoints->back();
+			long pDeal = player->hand->vecDeals->back();
+			// We have to show player's cards here
+
+			int r = compare(dP, pP);
+			if (r == 1) {
+				player->money += 2 * pDeal;
+				dealer->money -= pDeal;
+			}
+			else if (r == 0) { player->money += pDeal; }
+			else if (r == -1) { dealer->money += pDeal; }
+			else { std::cout << "SYSERR: ERROR!" << std::endl; }
+			playerHandPop();
+		}
+		return 1;
+	}
+	else { return 0; }
 }
 
 void TABLE::clear()
