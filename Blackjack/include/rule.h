@@ -18,7 +18,6 @@ class DEALER;
 class PLAYER;
 class TABLE;
 
-
 class RULE
 {
 	friend class DEALER;

@@ -137,6 +137,24 @@ void TABLE::compare()
 	}
 }
 
+int TABLE::compare(unsigned dP, unsigned pP)
+{
+	if (dP > 21) {
+		if (pP <= 21) {	return 1; }
+		else if (pP > 21) { return -1; }
+	}
+	else if (dP == 21) {
+		if (pP == 21) { return 0; }
+		else if (pP != 21) { return -1; }
+	}
+	else if (dP < 21) {
+		if (pP < dP || pP>21) { return -1; }
+		else if (pP == dP) { return 0; }
+		else if (pP > dP && pP <= 21) { return 1; }
+	}
+	return -2;
+}
+
 void TABLE::compareWSplit()
 {
 

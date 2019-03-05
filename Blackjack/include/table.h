@@ -33,6 +33,7 @@ public:
 	long getPlayerMoney();
 	int checkBlackjack();
 	void compare();
+	int compare(unsigned, unsigned);
 	void compareWSplit();
 	void clear();
 private:
