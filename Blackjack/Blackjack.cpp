@@ -9,7 +9,6 @@
 #include "table.h"
 #include "rule.h"
 
-
 int main()
 {
 	using namespace std;
@@ -70,19 +69,9 @@ int main()
 		// 6. clear the table
 		table1.clear();
 		
-
 		cout << "SYSTEM: End of round.\n" << endl;
 	}
 
-
-	// 
-	
-
-
-
-/*    while (true){
-    }
-*/
 	cout << "END of GAME!" << endl;
     return 0;
 }
