@@ -92,7 +92,6 @@ unsigned RULE::recursive21(PLAYER &pP, DEALER &dD,
 	unsigned points = getPoints(pP);
 	if (points >= 21) {
 		vP.push_back(points);
-		std::cout << "TEST: " << vC.size() << std::endl;
 		playerPushToHand(pP, *(pP.deal));
 		if (vC.size() != 0) {
 			nextAndShow(pP, dD, vC);
@@ -243,7 +242,8 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					tmpCards.push_back(tmpA1);
 					p.cards->pop_back();
 					p.initCard(d.draw());
-					std::cout << "SYSTEM: You choose to split." << std::endl;
+					std::cout << "SYSTEM: You choose to split.\n" <<
+						"        You have $" << *p.money << " left."<< std::endl;
 					p.showCards();
 					if ((points = recursive21(p, d, v_P, tmpCards)) >= 21) { return v_P; }
 					else { break; }

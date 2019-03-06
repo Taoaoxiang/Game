@@ -189,9 +189,19 @@ int TABLE::compareWSplit()
 			if (r == 1) {
 				*player->money += 2 * pDeal;
 				*dealer->money -= pDeal;
+				std::cout << "        Win $" << pDeal << std::endl;
+				std::cout << "        You have $" << *player->money << std::endl;
 			}
-			else if (r == 0) { *player->money += pDeal; }
-			else if (r == -1) { *dealer->money += pDeal; }
+			else if (r == 0) { 
+				*player->money += pDeal; 
+				std::cout << "        Push!" << std::endl;
+				std::cout << "        You have $" << *player->money << std::endl;
+			}
+			else if (r == -1) { 
+				*dealer->money += pDeal; 
+				std::cout << "        Lose $" << pDeal << std::endl;
+				std::cout << "        You have $" << *player->money << std::endl;
+			}
 			else { std::cout << "SYSERR: ERROR!" << std::endl; }
 		}
 		return 1;
