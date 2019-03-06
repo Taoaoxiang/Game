@@ -26,6 +26,7 @@ int main()
 	DECK deck1(2);
 	dealer1.defDeck(deck1);
 	while (true) {
+		cout << "\n================" << endl;
 		dealer1.shuffle();
 
 		// 1. player makes a bet															 
@@ -58,10 +59,12 @@ int main()
 			//	A. stand (>=17, dealer turn ends)
 			//	B. hit (<17, until >=17)
 			//	(auto) Bust (>21, dealer turn ends)
-			 unsigned dealerPoints = dealer1.turnWSplit(playerPoints);
+			unsigned dealerPoints = dealer1.turnWSplit(playerPoints);
 
 			// 5. compare
-			table1.compare();
+			//table1.compare();
+			cout << "\n================" << endl;
+			table1.compareWSplit();
 		}
 		
 		// 6. clear the table

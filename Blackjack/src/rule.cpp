@@ -86,20 +86,17 @@ bool RULE::splitable(CARD c1, CARD c2)
 	return false;
 }
 
-unsigned RULE::recursive21(PLAYER player, DEALER dealer, 
-	std::vector<unsigned> vec_P, std::vector<CARD> vec_C)
+unsigned RULE::recursive21(PLAYER &pP, DEALER &dD, 
+	std::vector<unsigned> &vP, std::vector<CARD> &vC)
 {
-	PLAYER *pP = &player;
-	DEALER *dD = &dealer;
-	std::vector<unsigned> *vP = &vec_P;
-	std::vector<CARD> *vC = &vec_C;
-	unsigned points = getPoints(*pP);
+	unsigned points = getPoints(pP);
 	if (points >= 21) {
-		vP->push_back(points);
-		playerPushToHand(*pP, *(pP->deal));
-		if (vC->size() != 0) {
-			nextAndShow(*pP, *dD, *vC);
-			points = recursive21(*pP, *dD, *vP, *vC);
+		vP.push_back(points);
+		std::cout << "TEST: " << vC.size() << std::endl;
+		playerPushToHand(pP, *(pP.deal));
+		if (vC.size() != 0) {
+			nextAndShow(pP, dD, vC);
+			points = recursive21(pP, dD, vP, vC);
 			return points;
 		}
 		else { return points; }
@@ -129,7 +126,7 @@ unsigned RULE::playerStand(PLAYER p)
 	return getPoints(p);
 }
 
-void RULE::playerPushToHand(PLAYER p, long l)
+void RULE::playerPushToHand(PLAYER &p, long l)
 {
 	std::vector<CARD> current_cards = *p.cards;
 	unsigned current_points = getPoints(current_cards);
@@ -229,7 +226,7 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 		// if player has money to get double
 		if (*p.deal <= *p.money && p.cards->size() == 2) {
 			// if the initial cards splitable
-			if (true || splitable((*p.cards)[0], (*p.cards)[1])) {
+			if (splitable((*p.cards)[0], (*p.cards)[1])) {
 				std::cout << msg.str() << '\n'
 					<< "        " << "Double: (D) or (d)\n"
 					<< "        " << "Split:  (P) or (p)\n"
@@ -248,7 +245,8 @@ std::vector<unsigned> RULE::playerTurnWSplit(PLAYER p, DEALER d)
 					p.initCard(d.draw());
 					std::cout << "SYSTEM: You choose to split." << std::endl;
 					p.showCards();
-					break;
+					if ((points = recursive21(p, d, v_P, tmpCards)) >= 21) { return v_P; }
+					else { break; }
 				}
 				case 'H': case 'h':
 					points = playerHit(p, d);

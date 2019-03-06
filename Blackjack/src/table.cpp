@@ -159,8 +159,11 @@ void TABLE::playerHandPop()
 {
 	player->cards->clear();
 	std::vector<CARD> cards = player->hand->vecCards->back();
-	*player->cards = cards;
-	
+	for (std::vector<CARD> ::iterator i = cards.begin();
+		i != cards.end(); ++i) {
+		player->initCard(*i);
+	}
+
 	player->hand->vecCards->pop_back();
 	player->hand->vecDeals->pop_back();
 	player->hand->vecPoints->pop_back();
@@ -168,29 +171,28 @@ void TABLE::playerHandPop()
 
 int TABLE::compareWSplit()
 {
+
 	unsigned dP = dealer->getPoints();
+	dealer->showCards();
+
 	if (player->hand->vecPoints->size() == player->hand->vecDeals->size()
 		&& player->hand->vecPoints->size() == player->hand->vecCards->size()) {
-
-		// show dealer's cards
-		dealer->showCards();
 
 		while (player->hand->vecPoints->size()!=0) {
 			unsigned pP = player->hand->vecPoints->back();
 			long pDeal = player->hand->vecDeals->back();
-			// We have to show player's cards here
-			// TODO: to be tested
+			// get and pop the last hand
+			playerHandPop();
 			player->showCards();
 
 			int r = compare(dP, pP);
 			if (r == 1) {
-				player->money += 2 * pDeal;
-				dealer->money -= pDeal;
+				*player->money += 2 * pDeal;
+				*dealer->money -= pDeal;
 			}
-			else if (r == 0) { player->money += pDeal; }
-			else if (r == -1) { dealer->money += pDeal; }
+			else if (r == 0) { *player->money += pDeal; }
+			else if (r == -1) { *dealer->money += pDeal; }
 			else { std::cout << "SYSERR: ERROR!" << std::endl; }
-			playerHandPop();
 		}
 		return 1;
 	}

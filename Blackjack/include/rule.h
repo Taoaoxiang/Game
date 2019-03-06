@@ -32,12 +32,12 @@ public:
 	void showCards(DEALER);
 	void showCards(PLAYER);
 	bool splitable(CARD, CARD);
-	unsigned recursive21(PLAYER, DEALER, 
-		std::vector<unsigned>, std::vector<CARD>);
+	unsigned recursive21(PLAYER&, DEALER&, 
+		std::vector<unsigned>&, std::vector<CARD>&);
 	void nextAndShow(PLAYER&, DEALER&, std::vector<CARD>&);
 	unsigned playerHit(PLAYER, DEALER);
 	unsigned playerStand(PLAYER);
-	void playerPushToHand(PLAYER, long);
+	void playerPushToHand(PLAYER&, long);
 	unsigned playerTurn(PLAYER, DEALER);
 	std::vector<unsigned> playerTurnWSplit(PLAYER, DEALER);
 	unsigned dealerTurn(DEALER, unsigned);
