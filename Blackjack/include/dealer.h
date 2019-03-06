@@ -35,6 +35,7 @@ public:
 	CARD draw();
 	void initCard(CARD);
 	void showInitCards();
+	void showCards();
 	unsigned getPoints();
 	unsigned turn(unsigned);
 	unsigned turnWSplit(std::vector<unsigned>);

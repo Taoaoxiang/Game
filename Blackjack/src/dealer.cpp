@@ -98,6 +98,12 @@ void DEALER::showInitCards()
 	r.showInitCards(*this);
 }
 
+void DEALER::showCards()
+{
+	RULE r;
+	r.showCards(*this);
+}
+
 unsigned DEALER::getPoints()
 {
 	RULE r;

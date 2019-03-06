@@ -157,6 +157,10 @@ int TABLE::compare(unsigned dP, unsigned pP)
 
 void TABLE::playerHandPop()
 {
+	player->cards->clear();
+	std::vector<CARD> cards = player->hand->vecCards->back();
+	*player->cards = cards;
+	
 	player->hand->vecCards->pop_back();
 	player->hand->vecDeals->pop_back();
 	player->hand->vecPoints->pop_back();
@@ -168,12 +172,15 @@ int TABLE::compareWSplit()
 	if (player->hand->vecPoints->size() == player->hand->vecDeals->size()
 		&& player->hand->vecPoints->size() == player->hand->vecCards->size()) {
 
-		// We have to show dealer's cards here
+		// show dealer's cards
+		dealer->showCards();
 
 		while (player->hand->vecPoints->size()!=0) {
 			unsigned pP = player->hand->vecPoints->back();
 			long pDeal = player->hand->vecDeals->back();
 			// We have to show player's cards here
+			// TODO: to be tested
+			player->showCards();
 
 			int r = compare(dP, pP);
 			if (r == 1) {
