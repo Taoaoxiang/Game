@@ -65,7 +65,10 @@ void DEALER::shuffle()
 			deck->shuffle();
 		} else {
 			if (deck->getAmountCard() <= 52) {
+				deck->open(nextNumberDeck);
 				deck->shuffle();
+				currentNumberDeck = nextNumberDeck;
+				deckPlayed == 0;
 			} else {
 				return;
 			}
@@ -74,7 +77,7 @@ void DEALER::shuffle()
 		deck->open(nextNumberDeck);
 		deck->shuffle();
 		currentNumberDeck = nextNumberDeck;
-		deckPlayed = 1;
+		deckPlayed = 0;
 	}
 	std::cout << "DEALER: The deck of cards is shuffled." << std::endl;
 }
