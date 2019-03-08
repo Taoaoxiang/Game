@@ -8,6 +8,7 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w -std=c++11")
 
 add_subdirectory(GuessNumber)
 add_subdirectory(Blackjack)
+add_subdirectory(Monopoly)
 #add_executable (GuessNumber "GuessNumber/main.cpp")
 
 

@@ -17,7 +17,10 @@ Oliver: pictures, animations, and the audios, right? <br />
 Becca: no. JHFDSLJJUREWOU)(U&YQhfasdfrqwer... You are awesome. <br />
 Oliver: ... ... <br />
 
-## Compile
+## 3. Monopoly
+I want to write my own version of Monopoly.<br />
+
+### Compile
 
 ``` bash
 # Try this one in Linux
