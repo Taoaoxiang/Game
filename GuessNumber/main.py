@@ -8,9 +8,9 @@ import sys
 import lib.GuessNumber as game
 
 def main():
-    #print(sys.platform)
     while True:
         game.gameGuessNumber()
 
 if __name__ == '__main__':
+    print(sys.platform)
     sys.exit(main())
