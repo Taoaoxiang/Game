@@ -16,13 +16,11 @@ include_directories(${INCLUDE_DIR})
 
 # Create shared library
 file(GLOB SOURCES ${SOURCE_DIR}/*.cpp)
-#link_directories(${SOURCE_DIR})
 add_library(${PROJECT_NAME} SHARED ${SOURCES} )
 
+# Install the shared library
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
 
-# Add source to this project's executable.
-#add_executable (GuessNumber "main.cpp" ${SOURCES})
 
-# TODO: Add tests and install targets if needed.
+
