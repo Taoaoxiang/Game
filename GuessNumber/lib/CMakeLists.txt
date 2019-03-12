@@ -19,7 +19,8 @@ file(GLOB SOURCES ${SOURCE_DIR}/*.cpp)
 #link_directories(${SOURCE_DIR})
 add_library(${PROJECT_NAME} SHARED ${SOURCES} )
 
-
+install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
 
 # Add source to this project's executable.
 #add_executable (GuessNumber "main.cpp" ${SOURCES})

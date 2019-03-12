@@ -27,5 +27,5 @@ I want to write my own version of Monopoly.<br />
 mkdir build
 cd build
 cmake ..
-make
+make install
 ```

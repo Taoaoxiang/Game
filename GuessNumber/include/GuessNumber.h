@@ -1,6 +1,14 @@
 #ifndef GUESS_NUMBER_H
 #define GUESS_NUMBER_H
-#define DLLEXPORT extern "C" __declspec(dllexport)
+#ifdef _WIN32
+    #define DLLEXPORT extern "C" __declspec(dllexport)
+#elif _WIN64
+    #define DLLEXPORT extern "C" __declspec(dllexport)
+#elif __linux__
+    #define DLLEXPORT extern "C"
+#elif __unix
+    #define DLLEXPORT extern "C"
+#endif
 
 #include<iostream>
 #include<ctime>
