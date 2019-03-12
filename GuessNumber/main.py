@@ -8,6 +8,7 @@ import sys
 import lib.GuessNumber as game
 
 def main():
+    #print(sys.platform)
     while True:
         game.gameGuessNumber()
 

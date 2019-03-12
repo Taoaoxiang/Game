@@ -1,5 +1,6 @@
 #ifndef GUESS_NUMBER_H
 #define GUESS_NUMBER_H
+#define DLLEXPORT extern "C" __declspec(dllexport)
 
 #include<iostream>
 #include<ctime>
@@ -10,6 +11,7 @@ void numberSplit(int *A, long x, int n);
 int CharToInt(char c);
 void getUserInput(int *A, int digit);
 bool checkAnswer(int *A, int *B, int n);
-extern "C" void gameGuessNumber();
+DLLEXPORT void gameGuessNumber();
+//extern "C" void gameGuessNumber();
 
 #endif

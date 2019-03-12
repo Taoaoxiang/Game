@@ -10,6 +10,10 @@ __pycache__/
 *.swp
 **/.vs/
 **/build/
-**/Blackjack/bin/
+# GuessNumber
 **/GuessNumber/bin/
+GuessNumber/lib/*.ilk
+GuessNumber/lib/*.pdb
+
+**/Blackjack/bin/
 **/Monopoly/bin/

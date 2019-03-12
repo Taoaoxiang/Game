@@ -59,7 +59,8 @@ void getUserInput(int *A, int digit)
     }   
 }
 
-extern "C" void gameGuessNumber()
+//extern "C" void gameGuessNumber()
+DLLEXPORT void gameGuessNumber()
 {
     const int digit = 4;
     const int chance = 8; 
