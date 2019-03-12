@@ -9,4 +9,6 @@ def gameGuessNumber():
     elif sys.platform == "win32":
         Game = ctypes.cdll.LoadLibrary(this_path + "\GuessNumberLib.dll")
         # Game = ctypes.WinDLL(this_path + "\GuessNumberLib.dll")
+    #elif sys.platform == "cygwin":
+    #    Game = ctypes.cdll.LoadLibrary(this_path + "/GuessNumberLib.dll")
     Game.gameGuessNumber()
