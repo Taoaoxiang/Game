@@ -11,6 +11,12 @@ add_subdirectory(GuessNumber)
 add_subdirectory(Blackjack)
 add_subdirectory(Monopoly)
 
+#add_subdirectory(SFML_Test)
+# After I tried multiple times with multiple version of SFML
+# It turned out it doesn't work on this Linux
+# I cannot figure out why
+# So maybe just move on to others?
+# Any suggestions?
 
 
 
